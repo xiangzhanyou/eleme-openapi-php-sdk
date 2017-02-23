@@ -1,30 +1,25 @@
 <?php
 
+
 class OAuthClient
 {
     private $client_id;
     private $secret;
-    private $callback_url;
     private $token_url;
     private $authorize_url;
 
-    public function __construct($app_key, $secret, $callback_url)
+    public function __construct()
     {
-        $this->client_id = $app_key;
-        $this->secret = $secret;
-        $this->callback_url = $callback_url;
-        $this->token_url = ACCESS_TOKEN_URL;
-        $this->authorize_url = AUTHORIZE_TOKEN_URL;
-
-        if (is_null($app_key) || is_null($secret) || is_null($callback_url)) {
-            throw new InvalidArgumentException("invalid initialize arguments.");
-        }
-        if ($app_key == "" || $secret == "" || $callback_url == "") {
-            throw new InvalidArgumentException("invalid initialize arguments.");
-        }
+        if (Config::get_is_init() == false)
+            throw new Exception("Config should init");
+        $this->client_id = Config::get_app_key();
+        $this->secret = Config::get_app_secret();
+        $this->token_url = Config::get_request_url() . "/token";
+        $this->authorize_url = Config::get_request_url() . "/authorize";
     }
 
-    public function get_token_in_client_credentials(){
+    public function get_token_in_client_credentials()
+    {
         $body = array(
             "grant_type" => "client_credentials"
         );
@@ -32,21 +27,21 @@ class OAuthClient
         return $response;
     }
 
-    public function get_auth_url($state, $scope)
+    public function get_auth_url($state, $scope, $callback_url)
     {
         $url = $this->authorize_url;
         $response_type = "code";
         $client_id = $this->client_id;
-        $callback = urlencode($this->callback_url);
+        $callback = $callback_url;
         return $url . "?response_type=" . $response_type . "&client_id=" . $client_id . "&state=" . $state . "&redirect_uri=" . $callback . "&scope=" . $scope;
     }
 
-    public function get_token_by_code($code)
+    public function get_token_by_code($code, $callback_url)
     {
         $body = array(
             "grant_type" => "authorization_code",
             "code" => $code,
-            "redirect_uri" => $this->callback_url,
+            "redirect_uri" => $callback_url,
             "client_id" => $this->client_id
         );
         $response = $this->request($body);
@@ -91,16 +86,5 @@ class OAuthClient
         }
         return $response;
     }
-
-    public function set_token_url($token_url)
-    {
-        $this->token_url = $token_url;
-    }
-
-    public function set_authorize_url($authorize_url)
-    {
-        $this->authorize_url = $authorize_url;
-    }
-
 }
 
