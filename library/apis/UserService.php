@@ -2,8 +2,10 @@
 
 class UserService extends AltaService
 {
-    public function get_user()
+
+    public function getUser()
     {
         return $this->client->call("eleme.user.getUser", array());
     }
+
 }
