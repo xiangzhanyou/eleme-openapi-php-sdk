@@ -23,6 +23,14 @@ class Config
             throw new InvalidArgumentException("the type of sandbox should be a boolean");
         }
 
+        if ($app_key == null || $app_key == "") {
+            throw new InvalidArgumentException("app_key is required");
+        }
+
+        if ($app_secret == null || $app_secret == "") {
+            throw new InvalidArgumentException("app_secret is required");
+        }
+
         Config::$app_key = $app_key;
         Config::$app_secret = $app_secret;
         Config::$sandbox = $sandbox;

@@ -118,7 +118,6 @@ class RpcClient
     private function post($url, $data)
     {
         $ch = curl_init($url);
-        echo json_encode($data);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $headers = array();
