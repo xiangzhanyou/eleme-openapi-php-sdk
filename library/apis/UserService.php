@@ -1,6 +1,6 @@
 <?php
 
-class UserService extends AltaService
+class UserService extends RpcService
 {
 
     public function get_user()

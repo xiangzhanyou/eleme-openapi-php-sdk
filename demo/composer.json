@@ -1,0 +1,5 @@
+{
+    "require": {
+        "eleme-openapi/php-sdk": "1.0.3"
+    }
+}

@@ -8,8 +8,6 @@ class RpcClient
     private $api_request_url;
     private $token;
 
-    private $sharding_key;
-
     public function __construct($token)
     {
         if (Config::get_is_init() == false)
@@ -18,14 +16,6 @@ class RpcClient
         $this->app_secret = Config::get_app_secret();
         $this->api_request_url = Config::get_request_url() . "/api/v1";
         $this->token = $token;
-    }
-
-    /**
-     * @param mixed $sharding_key
-     */
-    public function setShardingKey($sharding_key)
-    {
-        $this->sharding_key = $sharding_key;
     }
 
     /** call server api with nop
@@ -117,15 +107,15 @@ class RpcClient
 
     private function post($url, $data)
     {
+        $log = Config::getLog();
+        if ($log != null) {
+            $log->info("request data: " . json_encode($data));
+        }
+
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $headers = array();
-        $headers[] = "Content-type: application/json; charset=utf-8";
-        if ($this->sharding_key != null) {
-            $headers[] = "X-Shard: " . $this->sharding_key;
-        }
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type: application/json; charset=utf-8"));
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
         $response = curl_exec($ch);
@@ -133,6 +123,10 @@ class RpcClient
             throw new Exception(curl_error($ch));
         }
 
+        $log = Config::getLog();
+        if ($log != null) {
+            $log->info("response: " . $response);
+        }
         return $response;
     }
 }

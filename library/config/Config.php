@@ -8,6 +8,8 @@ class Config
 
     static private $request_url;
 
+    static private $log;
+
     static private $is_init = false;
 
     static private $default_request_url = "https://open-api.shop.ele.me";
@@ -60,5 +62,15 @@ class Config
     static public function set_request_url($request_url)
     {
         Config::$request_url = $request_url;
+    }
+
+    public static function getLog()
+    {
+        return self::$log;
+    }
+
+    public static function setLog($log)
+    {
+        self::$log = $log;
     }
 }

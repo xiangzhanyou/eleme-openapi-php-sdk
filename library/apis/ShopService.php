@@ -1,6 +1,6 @@
 <?php
 
-class ShopService extends AltaService
+class ShopService extends RpcService
 {
 
     public function get_shop($shop_id)
