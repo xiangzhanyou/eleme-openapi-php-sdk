@@ -5,7 +5,7 @@
   "keywords": [
     "eleme"
   ],
-  "version": "1.0.6",
+  "version": "1.0.",
   "authors": [
     {
       "name": "tangyan",
@@ -15,7 +15,9 @@
   "require": {
       "php": ">=5.3.0"
   },
-  "autoload":{
-      "files":["library/include.php"]
+  "autoload": {
+    "psr-4": {
+      "ElemeOpenApi\\": "src/ElemeOpenApi"
+    }
   }
 }
