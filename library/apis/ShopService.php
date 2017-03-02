@@ -1,5 +1,7 @@
 <?php
 
+namespace ElemeOpenApi\Api;
+
 class ShopService extends RpcService
 {
 

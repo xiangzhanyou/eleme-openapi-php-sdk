@@ -1,5 +1,19 @@
 <?php
 
+namespace ElemeOpenApi\Protocol;
+
+use ElemeOpenApi\Config\Config;
+use ElemeOpenApi\Exception\BusinessException;
+use ElemeOpenApi\Exception\ExceedLimitException;
+use ElemeOpenApi\Exception\IllegalRequestException;
+use ElemeOpenApi\Exception\InvalidSignatureException;
+use ElemeOpenApi\Exception\InvalidTimestampException;
+use ElemeOpenApi\Exception\PermissionDeniedException;
+use ElemeOpenApi\Exception\ServerErrorException;
+use ElemeOpenApi\Exception\UnauthorizedException;
+use ElemeOpenApi\Exception\ValidationFailedException;
+use Exception;
+
 class RpcClient
 {
 

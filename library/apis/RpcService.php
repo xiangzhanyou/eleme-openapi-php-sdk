@@ -1,5 +1,9 @@
 <?php
 
+namespace ElemeOpenApi\Api;
+
+use ElemeOpenApi\Protocol\RpcClient;
+
 class RpcService
 {
     protected $client;

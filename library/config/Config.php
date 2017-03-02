@@ -1,5 +1,9 @@
 <?php
 
+namespace ElemeOpenApi\Config;
+
+use InvalidArgumentException;
+
 class Config
 {
     static private $app_key;

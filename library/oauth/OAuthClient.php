@@ -1,5 +1,10 @@
 <?php
 
+namespace ElemeOpenApi\OAuth;
+
+use ElemeOpenApi\Config\Config;
+use ElemeOpenApi\Exception\IllegalRequestException;
+use Exception;
 
 class OAuthClient
 {

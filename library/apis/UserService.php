@@ -1,5 +1,7 @@
 <?php
 
+namespace ElemeOpenApi\Api;
+
 class UserService extends RpcService
 {
 
