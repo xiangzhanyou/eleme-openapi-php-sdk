@@ -133,13 +133,15 @@ class RpcClient
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
         curl_setopt($ch, CURLOPT_ENCODING, "gzip");
-        
+
         $response = curl_exec($ch);
         if (curl_errno($ch)) {
+            if ($log != null) {
+                $log->error("error: " . curl_error($ch));
+            }
             throw new Exception(curl_error($ch));
         }
 
-        $log = Config::getLog();
         if ($log != null) {
             $log->info("response: " . $response);
         }

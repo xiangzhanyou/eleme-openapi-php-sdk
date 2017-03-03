@@ -76,7 +76,10 @@ class Config
     public static function setLog($log)
     {
         if (!method_exists($log, "info")) {
-            throw new InvalidArgumentException("logger need have method 'info'");
+            throw new InvalidArgumentException("logger need have method 'info(\$message)'");
+        }
+        if (!method_exists($log, "error")) {
+            throw new InvalidArgumentException("logger need have method 'error(\$message)'");
         }
         self::$log = $log;
     }

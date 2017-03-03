@@ -68,18 +68,28 @@ class OAuthClient
     {
         return array(
             "Authorization: Basic " . base64_encode(urlencode($this->client_id) . ":" . urlencode($this->secret)),
-            "Content-Type: application/x-www-form-urlencoded; charset=utf-8");
+            "Content-Type: application/x-www-form-urlencoded; charset=utf-8",
+            "Accept-Encoding: gzip");
     }
 
     private function request($body)
     {
+        $log = Config::getLog();
+        if ($log != null) {
+            $log->info("request data: " . json_encode($body));
+        }
+
         $ch = curl_init($this->token_url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->get_headers());
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($body));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_ENCODING, "gzip");
         $request_response = curl_exec($ch);
         if (curl_errno($ch)) {
+            if ($log != null) {
+                $log->error("error: " . curl_error($ch));
+            }
             throw new Exception(curl_error($ch));
         }
         $response = json_decode($request_response);
@@ -88,6 +98,10 @@ class OAuthClient
         }
         if (isset($response->error)) {
             throw new IllegalRequestException($response->error);
+        }
+
+        if ($log != null) {
+            $log->info("response: " . $response);
         }
         return $response;
     }
