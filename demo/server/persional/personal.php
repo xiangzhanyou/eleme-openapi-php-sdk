@@ -1,7 +1,11 @@
 <?php
 
-define("BASE_DIR", dirname(__FILE__) . "/");
-require BASE_DIR . "vendor/eleme-openapi/php-sdk/library/include.php";
+use ElemeOpenApi\Config\Config;
+use ElemeOpenApi\Api\ShopService;
+use ElemeOpenApi\OAuth\OAuthClient;
+
+define("BASE_DIR", dirname(__FILE__) . "/../../../");
+require BASE_DIR . "vendor/autoload.php";
 
 $app_key = "JZhorhH7mJ";
 $app_secret = "62c41b0a2f3612cd7a05296f8b564ccd";
