@@ -23,6 +23,10 @@ class OAuthClient
         $this->authorize_url = Config::get_request_url() . "/authorize";
     }
 
+    /**
+     * 客户端模式，获取token
+     * @return mixed
+     */
     public function get_token_in_client_credentials()
     {
         $body = array(
@@ -32,6 +36,13 @@ class OAuthClient
         return $response;
     }
 
+    /**
+     * 生成授权url
+     * @param $state 状态码，通常是随机的UUID，授权成功后会原样返回，可以用于校验
+     * @param $scope 授权范围，默认情况下填写"all"
+     * @param $callback_url 回调地址
+     * @return string
+     */
     public function get_auth_url($state, $scope, $callback_url)
     {
         $url = $this->authorize_url;
@@ -41,6 +52,12 @@ class OAuthClient
         return $url . "?response_type=" . $response_type . "&client_id=" . $client_id . "&state=" . $state . "&redirect_uri=" . $callback . "&scope=" . $scope;
     }
 
+    /**
+     * 通过授权码获取token
+     * @param $code 授权码
+     * @param $callback_url 回调地址
+     * @return mixed
+     */
     public function get_token_by_code($code, $callback_url)
     {
         $body = array(
@@ -53,6 +70,12 @@ class OAuthClient
         return $response;
     }
 
+    /**
+     * 通过refresh_token兑换新的token
+     * @param $refresh_token 刷新的token
+     * @param $scope 授权范围，默认情况下填写"all"
+     * @return mixed
+     */
     public function get_token_by_refresh_token($refresh_token, $scope)
     {
         $body = array(

@@ -2,6 +2,7 @@
 
 namespace ElemeOpenApi\Config;
 
+use Exception;
 use InvalidArgumentException;
 
 class Config
@@ -50,31 +51,37 @@ class Config
 
     static public function get_app_key()
     {
+        self::init_check();
         return Config::$app_key;
     }
 
     static public function get_app_secret()
     {
+        self::init_check();
         return Config::$app_secret;
     }
 
     static public function get_request_url()
     {
+        self::init_check();
         return Config::$request_url;
     }
 
     static public function set_request_url($request_url)
     {
+        self::init_check();
         Config::$request_url = $request_url;
     }
 
     public static function getLog()
     {
+        self::init_check();
         return self::$log;
     }
 
     public static function setLog($log)
     {
+        self::init_check();
         if (!method_exists($log, "info")) {
             throw new InvalidArgumentException("logger need have method 'info(\$message)'");
         }
@@ -82,5 +89,12 @@ class Config
             throw new InvalidArgumentException("logger need have method 'error(\$message)'");
         }
         self::$log = $log;
+    }
+
+    private static function init_check()
+    {
+        if (self::$is_init == false) {
+            throw new Exception("config should init");
+        }
     }
 }
