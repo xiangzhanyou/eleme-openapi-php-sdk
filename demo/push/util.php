@@ -5,16 +5,7 @@ use ElemeOpenApi\Config\Config;
 function convert_to_message($content)
 {
     try {
-        $content = json_decode($content);
-        $message = array();
-        $message["requestId"] = $content->requestId;
-        $message["message"] = $content->message;
-        $message["type"] = $content->type;
-        $message["shopId"] = $content->shopId;
-        $message["timestamp"] = $content->timestamp;
-        $message["userId"] = $content->userId;
-        $message["appId"] = $content->appId;
-        $message["signature"] = $content->signature;
+        $message = json_decode($content, true);
     } catch (Exception $e) {
         throw new Exception("convert content to message error.");
     }
