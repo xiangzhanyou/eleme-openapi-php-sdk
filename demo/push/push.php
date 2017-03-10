@@ -33,9 +33,8 @@ if ($result == false) {
 //接单操作
 if ($message["type"] == 10) {
 
+    //实际使用时，应该取已经存储的token，不要每次获取新的token
     $client = new OAuthClient();
-
-    //实际使用时，需要将token存储下来，不要每次都调用
     $token = $client->get_token_in_client_credentials();
 
     $order_service = new OrderService($token);

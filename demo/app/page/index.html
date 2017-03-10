@@ -53,9 +53,13 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200 || xhr.status === 1223) {
-                        console.log(xhr.responseText)
                         // 这边双方约定返回json字符串
-                        resolve(JSON.parse(xhr.responseText))
+                        var response = JSON.parse(xhr.responseText)
+                        if (response.error) {
+                            reject(response.error)
+                        } else {
+                            resolve(response.result)
+                        }
                     }
                 }
             }
@@ -85,21 +89,23 @@
         document.querySelector('.w1000').style.display = 'block'
     }
 
-    function errorCallBack(searchParam) {
-        var errorText = decodeURI(searchParam.error_description || '授权失败')
+    function showErrorMessage(mes) {
         var h1 = document.createElement('h1')
         h1.style.textAlign = 'center'
-        h1.textContent = errorText
+        h1.textContent = mes
         document.body.appendChild(h1)
     }
+
+    function errorCallBack(searchParam) {
+        var errorText = decodeURI(searchParam.error_description || '授权失败')
+        showErrorMessage(errorText)
+    }
+
 
     function normalCallBack() {
         // 必须在客户端打开
         if (!eleme.userAgent.isClient) {
-            var h1 = document.createElement('h1')
-            h1.style.textAlign = 'center'
-            h1.textContent = '请在napos客户端打开'
-            document.body.appendChild(h1)
+            showErrorMessage('请在napos客户端打开')
         } else {
             Promise.all([
                 eleme.getUserId(),
@@ -114,11 +120,13 @@
                     if (result.OAuthUrl) {
                     location.href = result.OAuthUrl
                 } else {
-                    var shopName = result.shopInfo.name
+                    var shopName = result.shopName
                     document.querySelector('#userId').innerHTML = userId
                     document.querySelector('#shopName').innerHTML = shopName
                     document.querySelector('.w1000').style.display = 'block'
                 }
+            }).catch(e => {
+                    showErrorMessage(e)
             })
             })
         }

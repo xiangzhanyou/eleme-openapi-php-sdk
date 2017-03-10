@@ -7,6 +7,7 @@ use ElemeOpenApi\Api\UserService;
 define("BASE_DIR", dirname(__FILE__) . "/");
 require BASE_DIR . "../../vendor/autoload.php";
 require BASE_DIR . "util.php";
+require BASE_DIR . "entity/Response.php";
 
 $app_key = "Eug5ftXrNY";
 $app_secret = "5dffed6f3fadaf7cb6bea0f89233bfbaf3113b4b";
@@ -28,13 +29,25 @@ if ($token == null) {
     $callback_url = "http://localhost:8000/callback.php";
     $scope = "all";
     $state = create_uuid();
-    echo json_encode(array("userId" => null, "OAuthUrl" => $client->get_auth_url($state, $scope, $callback_url), "shopName" => null));
+
+    $response = new Response();
+    $response->result = array("userId" => null, "OAuthUrl" => $client->get_auth_url($state, $scope, $callback_url), "shopName" => null);
+
+    echo json_encode($response);
     return;
 }
 
 //有token记录，返回商户信息
-$user_service = new UserService($token);
-$user = $user_service->get_user();
+try {
+    $user_service = new UserService($token);
+    $user = $user_service->get_user();
+} catch (Exception $e) {
+    $response = new Response();
+    $response->error = "get user info error";
+
+    echo json_encode($response);
+    return;
+}
 
 $shop_name = "";
 foreach ($user->authorizedShops as $shop) {
@@ -43,5 +56,7 @@ foreach ($user->authorizedShops as $shop) {
     }
 }
 
-echo json_encode(array("userId" => $user->userId, "OAuthUrl" => null, "shopInfo" => array("name" => $shop_name)));
+$response = new Response();
+$response->result = array("userId" => $user->userId, "OAuthUrl" => null, "shopName" => $shop_name);
+echo json_encode($response);
 return;
