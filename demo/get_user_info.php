@@ -5,15 +5,10 @@ use ElemeOpenApi\OAuth\OAuthClient;
 use ElemeOpenApi\Api\UserService;
 
 define("BASE_DIR", dirname(__FILE__) . "/");
-require BASE_DIR . "../../vendor/autoload.php";
+require BASE_DIR . "../vendor/autoload.php";
 require BASE_DIR . "util.php";
 require BASE_DIR . "entity/Response.php";
-
-$app_key = "Eug5ftXrNY";
-$app_secret = "5dffed6f3fadaf7cb6bea0f89233bfbaf3113b4b";
-$sandbox = true;
-Config::init($app_key, $app_secret, $sandbox);
-Config::set_request_url("https://open-api-sandbox-shop.alpha.elenet.me");
+require BASE_DIR . "init.php";
 
 $content = json_decode(file_get_contents("php://input"), true);
 
