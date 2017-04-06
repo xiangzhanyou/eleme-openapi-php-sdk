@@ -120,7 +120,7 @@ class OAuthClient
             throw new Exception("illegal response :" . $request_response);
         }
         if (isset($response->error)) {
-            throw new IllegalRequestException($response->error);
+            throw new IllegalRequestException(json_encode($response));
         }
 
         if ($this->log != null) {

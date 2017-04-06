@@ -31,10 +31,17 @@ $client = new OAuthClient($config);
 
 try {
     $token = $client->get_token_by_code($code, $callback_url);
-    $user_service = new UserService($token);
+} catch (Exception $e) {
+    header('location: callback.php?error=get token error&error_description=get token error');
+    return;
+}
+
+//记录关系
+
+try {
+    $user_service = new UserService($token, $config);
     $user = $user_service->get_user();
 
-    //记录关系
     add_relation($user->userId, $token);
 } catch (Exception $e) {
     header('location: callback.php?error=get user info error&error_description=get user info error');

@@ -12,7 +12,7 @@ $sandbox = true;
 
 $scope = "all";
 $state = create_uuid();
-$callback_url = "https://localhost:8000/callback.php";
+$callback_url = "";
 
 
 $config = new Config($app_key, $app_secret, $sandbox);

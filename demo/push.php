@@ -25,6 +25,8 @@ if ($result == false) {
     throw new Exception("invalid signature");
 }
 
+echo json_encode($response);
+
 //接单操作
 if ($message["type"] == 10) {
     //获取已经存储的token
@@ -38,5 +40,4 @@ if ($message["type"] == 10) {
     $order_service->confirm_order($order->id);
 }
 
-echo json_encode($response);
 

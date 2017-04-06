@@ -31,7 +31,7 @@ if ($token == null) {
 
 //有token记录，返回商户信息
 try {
-    $user_service = new UserService($token);
+    $user_service = new UserService($token, $config);
     $user = $user_service->get_user();
 } catch (Exception $e) {
     $response = new Response();
