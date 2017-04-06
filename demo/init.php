@@ -9,7 +9,10 @@ require BASE_DIR . "../vendor/autoload.php";
 $app_key = "";
 $app_secret = "";
 $sandbox = true;
+
+$scope = "all";
+$state = create_uuid();
 $callback_url = "https://localhost:8000/callback.php";
 
 
-Config::init($app_key, $app_secret, $sandbox);
+$config = new Config($app_key, $app_secret, $sandbox);

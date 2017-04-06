@@ -27,7 +27,7 @@ if ($code == null) {
     return;
 }
 
-$client = new OAuthClient();
+$client = new OAuthClient($config);
 
 try {
     $token = $client->get_token_by_code($code, $callback_url);

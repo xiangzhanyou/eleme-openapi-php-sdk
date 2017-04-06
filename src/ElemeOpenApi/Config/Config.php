@@ -2,30 +2,27 @@
 
 namespace ElemeOpenApi\Config;
 
-use Exception;
 use InvalidArgumentException;
 
 class Config
 {
-    static private $app_key;
-    static private $app_secret;
-    static private $sandbox;
+    private $app_key;
+    private $app_secret;
+    private $sandbox;
 
-    static private $request_url;
+    private $request_url;
 
-    static private $log;
+    private $log;
 
-    static private $is_init = false;
+    private $default_request_url = "https://open-api.shop.ele.me";
+    private $default_sandbox_request_url = "https://open-api-sandbox.shop.ele.me";
 
-    static private $default_request_url = "https://open-api.shop.ele.me";
-    static private $default_sandbox_request_url = "https://open-api-sandbox.shop.ele.me";
-
-    static public function init($app_key, $app_secret, $sandbox)
+    public function __construct($app_key, $app_secret, $sandbox)
     {
         if ($sandbox == false) {
-            Config::$request_url = Config::$default_request_url;
+            $this->request_url = $this->default_request_url;
         } elseif ($sandbox == true) {
-            Config::$request_url = Config::$default_sandbox_request_url;
+            $this->request_url = $this->default_sandbox_request_url;
         } else {
             throw new InvalidArgumentException("the type of sandbox should be a boolean");
         }
@@ -38,63 +35,44 @@ class Config
             throw new InvalidArgumentException("app_secret is required");
         }
 
-        Config::$app_key = $app_key;
-        Config::$app_secret = $app_secret;
-        Config::$sandbox = $sandbox;
-        Config::$is_init = true;
+        $this->app_key = $app_key;
+        $this->app_secret = $app_secret;
+        $this->sandbox = $sandbox;
     }
 
-    static public function get_is_init()
+    public function get_app_key()
     {
-        return Config::$is_init;
+        return $this->app_key;
     }
 
-    static public function get_app_key()
+    public function get_app_secret()
     {
-        self::init_check();
-        return Config::$app_key;
+        return $this->app_secret;
     }
 
-    static public function get_app_secret()
+    public function get_request_url()
     {
-        self::init_check();
-        return Config::$app_secret;
+        return $this->request_url;
     }
 
-    static public function get_request_url()
+    public function set_request_url($request_url)
     {
-        self::init_check();
-        return Config::$request_url;
+        $this->request_url = $request_url;
     }
 
-    static public function set_request_url($request_url)
+    public function get_log()
     {
-        self::init_check();
-        Config::$request_url = $request_url;
+        return $this->log;
     }
 
-    public static function getLog()
+    public function set_log($log)
     {
-        self::init_check();
-        return self::$log;
-    }
-
-    public static function setLog($log)
-    {
-        self::init_check();
         if (!method_exists($log, "info")) {
             throw new InvalidArgumentException("logger need have method 'info(\$message)'");
         }
         if (!method_exists($log, "error")) {
             throw new InvalidArgumentException("logger need have method 'error(\$message)'");
         }
-        self::$log = $log;
-    }
-
-    private static function init_check()
-    {
-        if (self::$is_init == false) {
-            throw new Exception("config should init");
-        }
+        $this->log = $log;
     }
 }

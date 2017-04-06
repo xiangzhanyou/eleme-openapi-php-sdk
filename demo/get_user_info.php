@@ -20,10 +20,7 @@ $token = get_token_by_user_id($user_id);
 
 //无token记录，返回授权链接
 if ($token == null) {
-    $client = new OAuthClient();
-    $callback_url = "http://localhost:8000/callback.php";
-    $scope = "all";
-    $state = create_uuid();
+    $client = new OAuthClient($config);
 
     $response = new Response();
     $response->result = array("userId" => null, "OAuthUrl" => $client->get_auth_url($state, $scope, $callback_url), "shopName" => null);

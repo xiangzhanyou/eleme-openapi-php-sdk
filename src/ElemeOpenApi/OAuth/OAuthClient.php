@@ -12,15 +12,16 @@ class OAuthClient
     private $secret;
     private $token_url;
     private $authorize_url;
+    private $log;
 
-    public function __construct()
+    public function __construct(Config $config)
     {
-        if (Config::get_is_init() == false)
-            throw new Exception("Config should init");
-        $this->client_id = Config::get_app_key();
-        $this->secret = Config::get_app_secret();
-        $this->token_url = Config::get_request_url() . "/token";
-        $this->authorize_url = Config::get_request_url() . "/authorize";
+        $this->config = $config;
+        $this->client_id = $config->get_app_key();
+        $this->secret = $config->get_app_secret();
+        $this->token_url = $config->get_request_url() . "/token";
+        $this->authorize_url = $config->get_request_url() . "/authorize";
+        $this->log = $config->get_log();
     }
 
     /**
@@ -97,9 +98,8 @@ class OAuthClient
 
     private function request($body)
     {
-        $log = Config::getLog();
-        if ($log != null) {
-            $log->info("request data: " . json_encode($body));
+        if ($this->log != null) {
+            $this->log->info("request data: " . json_encode($body));
         }
 
         $ch = curl_init($this->token_url);
@@ -110,8 +110,8 @@ class OAuthClient
         curl_setopt($ch, CURLOPT_ENCODING, "gzip");
         $request_response = curl_exec($ch);
         if (curl_errno($ch)) {
-            if ($log != null) {
-                $log->error("error: " . curl_error($ch));
+            if ($this->log != null) {
+                $this->log->error("error: " . curl_error($ch));
             }
             throw new Exception(curl_error($ch));
         }
@@ -123,8 +123,8 @@ class OAuthClient
             throw new IllegalRequestException($response->error);
         }
 
-        if ($log != null) {
-            $log->info("response: " . $response);
+        if ($this->log != null) {
+            $this->log->info("response: " . $response);
         }
         return $response;
     }

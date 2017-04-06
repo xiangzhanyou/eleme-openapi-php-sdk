@@ -21,14 +21,14 @@ class RpcClient
     private $app_secret;
     private $api_request_url;
     private $token;
+    private $log;
 
-    public function __construct($token)
+    public function __construct($token, Config $config)
     {
-        if (Config::get_is_init() == false)
-            throw new Exception("Config should init");
-        $this->app_key = Config::get_app_key();
-        $this->app_secret = Config::get_app_secret();
-        $this->api_request_url = Config::get_request_url() . "/api/v1";
+        $this->app_key = $config->get_app_key();
+        $this->app_secret = $config->get_app_secret();
+        $this->api_request_url = $config->get_request_url() . "/api/v1";
+        $this->log = $config->get_log();
         $this->token = $token;
     }
 
@@ -121,7 +121,7 @@ class RpcClient
 
     private function post($url, $data)
     {
-        $log = Config::getLog();
+        $log = $this->log;
         if ($log != null) {
             $log->info("request data: " . json_encode($data));
         }
