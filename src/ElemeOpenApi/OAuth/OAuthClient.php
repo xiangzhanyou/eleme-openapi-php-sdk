@@ -124,7 +124,7 @@ class OAuthClient
         }
 
         if ($this->log != null) {
-            $this->log->info("response: " . $response);
+            $this->log->info("response: " . json_encode($response));
         }
         return $response;
     }
