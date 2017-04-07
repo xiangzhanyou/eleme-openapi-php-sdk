@@ -116,4 +116,4 @@
 
     Release Date : 2017-xx-xx
 
-- [Feature] sdk完整实现
+- [Feature] SDK完整实现
