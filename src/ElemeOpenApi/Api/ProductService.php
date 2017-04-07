@@ -120,6 +120,25 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.item.batchRemoveItems", array("itemIds" => $item_ids));
     }
 
+    /** 批量更新商品库存
+     * @param $spec_stocks 商品以及规格库存列表
+     * @return mixed
+     */
+    public function batch_update_spec_stocks($spec_stocks)
+    {
+        return $this->client->call("eleme.product.item.batchUpdateSpecStocks", array("specStocks" => $spec_stocks));
+    }
+
+    /** 设置商品排序
+     * @param $category_id 商品分类Id
+     * @param $item_ids 商品Id列表
+     * @return mixed
+     */
+    public function set_item_positions($category_id, $item_ids)
+    {
+        return $this->client->call("eleme.product.item.setItemPositions", array("categoryId" => $category_id, "itemIds" => $item_ids));
+    }
+
     /** 查询店铺商品分类
      * @param $shop_id 店铺Id
      * @return mixed
@@ -167,6 +186,16 @@ class ProductService extends RpcService
     public function remove_category($category_id)
     {
         return $this->client->call("eleme.product.category.removeCategory", array("categoryId" => $category_id));
+    }
+
+    /** 设置分类排序
+     * @param $shop_id 饿了么店铺Id
+     * @param $category_ids 需要排序的分类Id
+     * @return mixed
+     */
+    public function set_category_positions($shop_id, $category_ids)
+    {
+        return $this->client->call("eleme.product.category.setCategoryPositions", array("shopId" => $shop_id, "categoryIds" => $category_ids));
     }
 
     /** 上传图片，返回图片的hash值

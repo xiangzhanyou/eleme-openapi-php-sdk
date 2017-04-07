@@ -46,7 +46,7 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.cancelOrder", array("orderId" => $order_id, "type" => $type, "remark" => $remark));
     }
 
-    /** 同意退单
+    /** 同意退单/取消单
      * @param $order_id 订单Id
      * @return mixed
      */
@@ -55,7 +55,7 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.agreeRefund", array("orderId" => $order_id));
     }
 
-    /** 不同意退单
+    /** 不同意退单/取消单
      * @param $order_id 订单Id
      * @param $reason 商家不同意退单原因
      * @return mixed
@@ -63,6 +63,42 @@ class OrderService extends RpcService
     public function disagree_refund($order_id, $reason)
     {
         return $this->client->call("eleme.order.disagreeRefund", array("orderId" => $order_id, "reason" => $reason));
+    }
+
+    /** 获取订单配送记录
+     * @param $order_id 订单Id
+     * @return mixed
+     */
+    public function get_delivery_state_record($order_id)
+    {
+        return $this->client->call("eleme.order.getDeliveryStateRecord", array("orderId" => $order_id));
+    }
+
+    /** 批量获取订单最新配送记录
+     * @param $order_ids 订单Id列表
+     * @return mixed
+     */
+    public function batch_get_delivery_states($order_ids)
+    {
+        return $this->client->call("eleme.order.batchGetDeliveryStates", array("orderIds" => $order_ids));
+    }
+
+    /** 配送异常或者物流拒单后选择自行配送
+     * @param $order_id 订单Id
+     * @return mixed
+     */
+    public function delivery_by_self($order_id)
+    {
+        return $this->client->call("eleme.order.deliveryBySelf", array("orderId" => $order_id));
+    }
+
+    /** 配送异常或者物流拒单后选择不再配送
+     * @param $order_id 订单Id
+     * @return mixed
+     */
+    public function no_more_delivery($order_id)
+    {
+        return $this->client->call("eleme.order.noMoreDelivery", array("orderId" => $order_id));
     }
 
 }
