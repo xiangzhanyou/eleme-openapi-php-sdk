@@ -112,8 +112,8 @@
 
 ## CHANGELOG:
 
-### [v1.1.5]
+### [v1.1.6]
 
-    Release Date : 2017-xx-xx
+    Release Date : 2017-4-7
 
 - [Feature] SDK完整实现
