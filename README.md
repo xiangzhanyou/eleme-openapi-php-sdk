@@ -112,7 +112,7 @@
 
 ## CHANGELOG:
 
-### [v1.1.6]
+### [v1.1.7]
 
     Release Date : 2017-4-7
 
