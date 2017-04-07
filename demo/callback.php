@@ -5,9 +5,9 @@ use ElemeOpenApi\OAuth\OAuthClient;
 use ElemeOpenApi\Api\UserService;
 
 define("BASE_DIR", dirname(__FILE__) . "/");
-require BASE_DIR . "../vendor/autoload.php";
 require BASE_DIR . "util.php";
 require BASE_DIR . "init.php";
+require ROOT_DIR . "vendor/autoload.php";
 
 $content = file_get_contents("php://input");
 

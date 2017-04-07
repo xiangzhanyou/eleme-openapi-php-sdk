@@ -1,14 +1,13 @@
 <?php
 
-use ElemeOpenApi\Config\Config;
 use ElemeOpenApi\OAuth\OAuthClient;
 use ElemeOpenApi\Api\UserService;
 
 define("BASE_DIR", dirname(__FILE__) . "/");
-require BASE_DIR . "../vendor/autoload.php";
 require BASE_DIR . "util.php";
 require BASE_DIR . "entity/Response.php";
 require BASE_DIR . "init.php";
+require ROOT_DIR . "vendor/autoload.php";
 
 $content = json_decode(file_get_contents("php://input"), true);
 
@@ -23,7 +22,7 @@ if ($token == null) {
     $client = new OAuthClient($config);
 
     $response = new Response();
-    $response->result = array("userId" => null, "OAuthUrl" => $client->get_auth_url($state, $scope, $callback_url), "shopName" => null);
+    $response->result = array("userId" => null, "OAuthUrl" => $client->get_auth_url(create_uuid(), $scope, $callback_url), "shopName" => null);
 
     echo json_encode($response);
     return;
