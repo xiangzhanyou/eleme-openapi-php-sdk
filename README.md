@@ -116,7 +116,7 @@
 
     Release Date : 2017-4-11
 
-- [Feature] 修复了demo的HTML文件中，图片链接失效的问题
+- [BugFix] 修复了demo的HTML文件中，图片链接失效的问题
 
 ### [v1.1.7]
 
