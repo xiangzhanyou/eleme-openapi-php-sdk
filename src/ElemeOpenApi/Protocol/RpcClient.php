@@ -100,6 +100,12 @@ class RpcClient
             $string .= $key . "=" . json_encode($value, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
         }
         $splice = $protocol['action'] . $this->token->access_token . $string . $this->app_secret;
+
+        $encode = mb_detect_encoding($splice, array("ASCII", 'UTF-8', "GB2312", "GBK", 'BIG5'));
+        if ($encode != null) {
+            $splice = mb_convert_encoding($splice, 'UTF-8', $encode);
+        }
+
         return strtoupper(md5($splice));
     }
 
