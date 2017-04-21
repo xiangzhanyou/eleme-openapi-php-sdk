@@ -53,6 +53,11 @@ class RpcClient
             "params" => $parameters,
         );
 
+        //如果没有参数，赋值为一个空对象
+        if (count($parameters) == 0) {
+            $protocol["params"] = (object)array();
+        }
+
         $protocol['signature'] = $this->generate_signature($protocol);
 
         $result = $this->post($this->api_request_url, $protocol);
@@ -131,7 +136,7 @@ class RpcClient
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type: application/json; charset=utf-8", "Accept-Encoding: gzip"));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data, JSON_FORCE_OBJECT));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
         curl_setopt($ch, CURLOPT_ENCODING, "gzip");
 
