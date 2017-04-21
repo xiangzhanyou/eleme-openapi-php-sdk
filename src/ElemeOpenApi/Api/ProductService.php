@@ -8,6 +8,92 @@ namespace ElemeOpenApi\Api;
 class ProductService extends RpcService
 {
 
+    /** 查询店铺商品分类
+     * @param $shop_id 店铺Id
+     * @return mixed
+     */
+    public function get_shop_categories($shop_id)
+    {
+        return $this->client->call("eleme.product.category.getShopCategories", array("shopId" => $shop_id));
+    }
+
+    /** 查询商品分类详情
+     * @param $category_id 商品分类Id
+     * @return mixed
+     */
+    public function get_category($category_id)
+    {
+        return $this->client->call("eleme.product.category.getCategory", array("categoryId" => $category_id));
+    }
+
+    /** 添加商品分类
+     * @param $shop_id 店铺Id
+     * @param $name 商品分类名称，长度需在50字以内
+     * @param $description 商品分类描述，长度需在50字以内
+     * @return mixed
+     */
+    public function create_category($shop_id, $name, $description)
+    {
+        return $this->client->call("eleme.product.category.createCategory", array("shopId" => $shop_id, "name" => $name, "description" => $description));
+    }
+
+    /** 更新商品分类
+     * @param $category_id 商品分类Id
+     * @param $name 商品分类名称，长度需在50字以内
+     * @param $description 商品分类描述，长度需在50字以内
+     * @return mixed
+     */
+    public function update_category($category_id, $name, $description)
+    {
+        return $this->client->call("eleme.product.category.updateCategory", array("categoryId" => $category_id, "name" => $name, "description" => $description));
+    }
+
+    /** 删除商品分类
+     * @param $category_id 商品分类Id
+     * @return mixed
+     */
+    public function remove_category($category_id)
+    {
+        return $this->client->call("eleme.product.category.removeCategory", array("categoryId" => $category_id));
+    }
+
+    /** 设置分类排序
+     * @param $shop_id 饿了么店铺Id
+     * @param $category_ids 需要排序的分类Id
+     * @return mixed
+     */
+    public function set_category_positions($shop_id, $category_ids)
+    {
+        return $this->client->call("eleme.product.category.setCategoryPositions", array("shopId" => $shop_id, "categoryIds" => $category_ids));
+    }
+
+    /** 上传图片，返回图片的hash值
+     * @param $image 文件内容base64编码值
+     * @return mixed
+     */
+    public function upload_image($image)
+    {
+        return $this->client->call("eleme.file.uploadImage", array("image" => $image));
+    }
+
+    /** 通过远程_u_r_l上传图片，返回图片的hash值
+     * @param $url 远程Url地址
+     * @return mixed
+     */
+    public function upload_image_with_remote_url($url)
+    {
+        return $this->client->call("eleme.file.uploadImageWithRemoteUrl", array("url" => $url));
+    }
+
+    /** 获取上传文件的访问_u_r_l，返回文件的_url地址
+     * @param $hash 图片hash值
+     * @return mixed
+     */
+    public function get_uploaded_url($hash)
+    {
+        return $this->client->call("eleme.file.getUploadedUrl", array("hash" => $hash));
+    }
+
     /** 获取一个分类下的所有商品
      * @param $category_id 商品分类Id
      * @return mixed
@@ -139,90 +225,13 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.item.setItemPositions", array("categoryId" => $category_id, "itemIds" => $item_ids));
     }
 
-    /** 查询店铺商品分类
-     * @param $shop_id 店铺Id
+    /** 批量沽清库存并在次日2:00开始置满
+     * @param $clear_stocks 店铺Id及商品Id的列表
      * @return mixed
      */
-    public function get_shop_categories($shop_id)
+    public function clear_and_timing_max_stock($clear_stocks)
     {
-        return $this->client->call("eleme.product.category.getShopCategories", array("shopId" => $shop_id));
-    }
-
-    /** 查询商品分类详情
-     * @param $category_id 商品分类Id
-     * @return mixed
-     */
-    public function get_category($category_id)
-    {
-        return $this->client->call("eleme.product.category.getCategory", array("categoryId" => $category_id));
-    }
-
-    /** 添加商品分类
-     * @param $shop_id 店铺Id
-     * @param $name 商品分类名称，长度需在50字以内
-     * @param $description 商品分类描述，长度需在50字以内
-     * @return mixed
-     */
-    public function create_category($shop_id, $name, $description)
-    {
-        return $this->client->call("eleme.product.category.createCategory", array("shopId" => $shop_id, "name" => $name, "description" => $description));
-    }
-
-    /** 更新商品分类
-     * @param $category_id 商品分类Id
-     * @param $name 商品分类名称，长度需在50字以内
-     * @param $description 商品分类描述，长度需在50字以内
-     * @return mixed
-     */
-    public function update_category($category_id, $name, $description)
-    {
-        return $this->client->call("eleme.product.category.updateCategory", array("categoryId" => $category_id, "name" => $name, "description" => $description));
-    }
-
-    /** 删除商品分类
-     * @param $category_id 商品分类Id
-     * @return mixed
-     */
-    public function remove_category($category_id)
-    {
-        return $this->client->call("eleme.product.category.removeCategory", array("categoryId" => $category_id));
-    }
-
-    /** 设置分类排序
-     * @param $shop_id 饿了么店铺Id
-     * @param $category_ids 需要排序的分类Id
-     * @return mixed
-     */
-    public function set_category_positions($shop_id, $category_ids)
-    {
-        return $this->client->call("eleme.product.category.setCategoryPositions", array("shopId" => $shop_id, "categoryIds" => $category_ids));
-    }
-
-    /** 上传图片，返回图片的hash值
-     * @param $image 文件内容base64编码值
-     * @return mixed
-     */
-    public function upload_image($image)
-    {
-        return $this->client->call("eleme.file.uploadImage", array("image" => $image));
-    }
-
-    /** 通过远程_u_r_l上传图片，返回图片的hash值
-     * @param $url 远程Url地址
-     * @return mixed
-     */
-    public function upload_image_with_remote_url($url)
-    {
-        return $this->client->call("eleme.file.uploadImageWithRemoteUrl", array("url" => $url));
-    }
-
-    /** 获取上传文件的访问_u_r_l，返回文件的_url地址
-     * @param $hash 图片hash值
-     * @return mixed
-     */
-    public function get_uploaded_url($hash)
-    {
-        return $this->client->call("eleme.file.getUploadedUrl", array("hash" => $hash));
+        return $this->client->call("eleme.product.item.clearAndTimingMaxStock", array("clearStocks" => $clear_stocks));
     }
 
 }

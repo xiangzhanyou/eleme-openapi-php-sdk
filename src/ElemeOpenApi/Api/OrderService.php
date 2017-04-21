@@ -101,4 +101,13 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.noMoreDelivery", array("orderId" => $order_id));
     }
 
+    /** 订单确认送达
+     * @param $order_id 订单ID
+     * @return mixed
+     */
+    public function received_order($order_id)
+    {
+        return $this->client->call("eleme.order.receivedOrder", array("orderId" => $order_id));
+    }
+
 }
