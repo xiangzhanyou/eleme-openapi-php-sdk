@@ -53,12 +53,14 @@ class RpcClient
             "params" => $parameters,
         );
 
+
+
+        $protocol['signature'] = $this->generate_signature($protocol);
+
         //如果没有参数，赋值为一个空对象
         if (count($parameters) == 0) {
             $protocol["params"] = (object)array();
         }
-
-        $protocol['signature'] = $this->generate_signature($protocol);
 
         $result = $this->post($this->api_request_url, $protocol);
         $response = json_decode($result);
