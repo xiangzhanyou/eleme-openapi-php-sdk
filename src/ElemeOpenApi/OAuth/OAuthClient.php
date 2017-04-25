@@ -107,6 +107,7 @@ class OAuthClient
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($body));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERAGENT, "eleme-openapi-php-sdk");
         curl_setopt($ch, CURLOPT_ENCODING, "gzip");
         $request_response = curl_exec($ch);
         if (curl_errno($ch)) {

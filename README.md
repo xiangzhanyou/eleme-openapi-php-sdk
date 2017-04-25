@@ -112,6 +112,12 @@
 
 ## CHANGELOG:
 
+### [v1.3.0]
+
+    Release Date : 2017-4-25
+
+- [Feature] 店铺服务新增接口。
+
 ### [v1.2.0]
 
     Release Date : 2017-4-21

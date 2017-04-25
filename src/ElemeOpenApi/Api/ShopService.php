@@ -36,4 +36,15 @@ class ShopService extends RpcService
         return $this->client->call("eleme.shop.mgetShopStatus", array("shopIds" => $shop_ids));
     }
 
+    /** 设置送达时间
+     * @param $shop_id 店铺Id
+     * @param $delivery_basic_mins 配送基准时间(单位分钟)
+     * @param $delivery_adjust_mins 配送调整时间(单位分钟)
+     * @return mixed
+     */
+    public function set_delivery_time($shop_id, $delivery_basic_mins, $delivery_adjust_mins)
+    {
+        return $this->client->call("eleme.shop.setDeliveryTime", array("shopId" => $shop_id, "deliveryBasicMins" => $delivery_basic_mins, "deliveryAdjustMins" => $delivery_adjust_mins));
+    }
+
 }
