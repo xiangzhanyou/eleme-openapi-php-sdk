@@ -67,6 +67,15 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.category.setCategoryPositions", array("shopId" => $shop_id, "categoryIds" => $category_ids));
     }
 
+    /** 查询商品后台分类
+     * @param $shop_id 店铺Id
+     * @return mixed
+     */
+    public function get_back_category($shop_id)
+    {
+        return $this->client->call("eleme.product.category.getBackCategory", array("shopId" => $shop_id));
+    }
+
     /** 上传图片，返回图片的hash值
      * @param $image 文件内容base64编码值
      * @return mixed

@@ -112,6 +112,15 @@
 
 ## CHANGELOG:
 
+### [v1.4.0]
+
+    Release Date : 2017-5-5
+    
+- [Feature] 店铺服务新增接口。
+- [Feature] 商品服务新增接口。
+- [Feature] 新增签约服务。
+    
+    
 ### [v1.3.0]
 
     Release Date : 2017-4-25
