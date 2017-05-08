@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [v1.5.0]
+
+    Release Date : 2017-5-8
+    
+- [Feature] 订单服务新增接口。
+- [Feature] 商品服务新增接口。
+
 ### [v1.4.0]
 
     Release Date : 2017-5-5

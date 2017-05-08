@@ -157,4 +157,23 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.mgetRefundOrders", array("orderIds" => $order_ids));
     }
 
+    /** 取消呼叫配送
+     * @param $order_id 订单Id
+     * @return mixed
+     */
+    public function cancel_delivery($order_id)
+    {
+        return $this->client->call("eleme.order.cancelDelivery", array("orderId" => $order_id));
+    }
+
+    /** 呼叫配送
+     * @param $order_id 订单Id
+     * @param $fee 小费
+     * @return mixed
+     */
+    public function call_delivery($order_id, $fee)
+    {
+        return $this->client->call("eleme.order.callDelivery", array("orderId" => $order_id, "fee" => $fee));
+    }
+
 }

@@ -243,4 +243,14 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.item.clearAndTimingMaxStock", array("clearStocks" => $clear_stocks));
     }
 
+    /** 批量修改商品价格
+     * @param $shop_id 店铺Id
+     * @param $spec_prices 商品Id及其下SkuId和价格对应Map
+     * @return mixed
+     */
+    public function batch_update_prices($shop_id, $spec_prices)
+    {
+        return $this->client->call("eleme.product.item.batchUpdatePrices", array("shopId" => $shop_id, "specPrices" => $spec_prices));
+    }
+
 }
