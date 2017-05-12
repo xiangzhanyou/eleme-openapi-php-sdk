@@ -112,6 +112,15 @@
 
 ## CHANGELOG:
 
+### [1.6.0]
+
+    Release Date : 2017-05-12
+
+- [Feature] 更新了订单服务
+- [Feature] 更新了商品服务
+- [Feature] 修复了demo的Util里，convert_to_message的json_decode有可能精度丢失的问题
+
+
 ### [v1.5.0]
 
     Release Date : 2017-5-8

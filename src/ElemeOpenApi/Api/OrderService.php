@@ -113,7 +113,7 @@ class OrderService extends RpcService
     /** 回复催单
      * @param $remind_id 催单Id
      * @param $type 回复类别
-     * @param $content 回复内容
+     * @param $content 回复内容,如果type为custom,content必填,回复内容不能超过30个字符
      * @return mixed
      */
     public function reply_reminder($remind_id, $type, $content)
@@ -168,7 +168,7 @@ class OrderService extends RpcService
 
     /** 呼叫配送
      * @param $order_id 订单Id
-     * @param $fee 小费
+     * @param $fee 小费,1-8之间的整数
      * @return mixed
      */
     public function call_delivery($order_id, $fee)

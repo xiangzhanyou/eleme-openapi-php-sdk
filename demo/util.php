@@ -64,7 +64,7 @@ function create_uuid()
 function convert_to_message($content)
 {
     try {
-        $message = json_decode($content, true);
+        $message = json_decode($content, true, 512, JSON_BIGINT_AS_STRING);
     } catch (Exception $e) {
         throw new Exception("convert content to message error.");
     }

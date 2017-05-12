@@ -17,6 +17,15 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.category.getShopCategories", array("shopId" => $shop_id));
     }
 
+    /** 查询店铺商品分类，包含二级分类
+     * @param $shop_id 店铺Id
+     * @return mixed
+     */
+    public function get_shop_categories_with_children($shop_id)
+    {
+        return $this->client->call("eleme.product.category.getShopCategoriesWithChildren", array("shopId" => $shop_id));
+    }
+
     /** 查询商品分类详情
      * @param $category_id 商品分类Id
      * @return mixed
@@ -24,6 +33,15 @@ class ProductService extends RpcService
     public function get_category($category_id)
     {
         return $this->client->call("eleme.product.category.getCategory", array("categoryId" => $category_id));
+    }
+
+    /** 查询商品分类详情，包含二级分类
+     * @param $category_id 商品分类Id
+     * @return mixed
+     */
+    public function get_category_with_children($category_id)
+    {
+        return $this->client->call("eleme.product.category.getCategoryWithChildren", array("categoryId" => $category_id));
     }
 
     /** 添加商品分类
@@ -37,6 +55,18 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.category.createCategory", array("shopId" => $shop_id, "name" => $name, "description" => $description));
     }
 
+    /** 添加商品分类，支持二级分类
+     * @param $shop_id 店铺Id
+     * @param $name 商品分类名称，长度需在50字以内
+     * @param $parent_id 父分类ID，如果没有可以填0
+     * @param $description 商品分类描述，长度需在50字以内
+     * @return mixed
+     */
+    public function create_category_with_children($shop_id, $name, $parent_id, $description)
+    {
+        return $this->client->call("eleme.product.category.createCategoryWithChildren", array("shopId" => $shop_id, "name" => $name, "parentId" => $parent_id, "description" => $description));
+    }
+
     /** 更新商品分类
      * @param $category_id 商品分类Id
      * @param $name 商品分类名称，长度需在50字以内
@@ -46,6 +76,18 @@ class ProductService extends RpcService
     public function update_category($category_id, $name, $description)
     {
         return $this->client->call("eleme.product.category.updateCategory", array("categoryId" => $category_id, "name" => $name, "description" => $description));
+    }
+
+    /** 更新商品分类，包含二级分类
+     * @param $category_id 商品分类Id
+     * @param $name 商品分类名称，长度需在50字以内
+     * @param $parent_id 父分类ID，如果没有可以填0
+     * @param $description 商品分类描述，长度需在50字以内
+     * @return mixed
+     */
+    public function update_category_with_children($category_id, $name, $parent_id, $description)
+    {
+        return $this->client->call("eleme.product.category.updateCategoryWithChildren", array("categoryId" => $category_id, "name" => $name, "parentId" => $parent_id, "description" => $description));
     }
 
     /** 删除商品分类
@@ -65,6 +107,16 @@ class ProductService extends RpcService
     public function set_category_positions($shop_id, $category_ids)
     {
         return $this->client->call("eleme.product.category.setCategoryPositions", array("shopId" => $shop_id, "categoryIds" => $category_ids));
+    }
+
+    /** 设置二级分类排序
+     * @param $shop_id 饿了么店铺Id
+     * @param $category_with_children_ids 需要排序的父分类Id，及其下属的二级分类ID
+     * @return mixed
+     */
+    public function set_category_positions_with_children($shop_id, $category_with_children_ids)
+    {
+        return $this->client->call("eleme.product.category.setCategoryPositionsWithChildren", array("shopId" => $shop_id, "categoryWithChildrenIds" => $category_with_children_ids));
     }
 
     /** 查询商品后台分类

@@ -63,7 +63,7 @@ class RpcClient
         }
 
         $result = $this->post($this->api_request_url, $protocol);
-        $response = json_decode($result);
+        $response = json_decode($result, true, 512, JSON_BIGINT_AS_STRING);
         if (is_null($response)) {
             throw new Exception("invalid response.");
         }
