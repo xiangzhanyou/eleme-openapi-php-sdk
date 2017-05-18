@@ -119,7 +119,7 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.category.setCategoryPositionsWithChildren", array("shopId" => $shop_id, "categoryWithChildrenIds" => $category_with_children_ids));
     }
 
-    /** 查询商品后台分类
+    /** 查询商品后台类目
      * @param $shop_id 店铺Id
      * @return mixed
      */
@@ -293,6 +293,26 @@ class ProductService extends RpcService
     public function clear_and_timing_max_stock($clear_stocks)
     {
         return $this->client->call("eleme.product.item.clearAndTimingMaxStock", array("clearStocks" => $clear_stocks));
+    }
+
+    /** 根据商品扩展码获取商品
+     * @param $shop_id 店铺Id
+     * @param $extend_code 商品扩展码
+     * @return mixed
+     */
+    public function get_item_by_shop_id_and_extend_code($shop_id, $extend_code)
+    {
+        return $this->client->call("eleme.product.item.getItemByShopIdAndExtendCode", array("shopId" => $shop_id, "extendCode" => $extend_code));
+    }
+
+    /** 根据商品条形码获取商品
+     * @param $shop_id 店铺Id
+     * @param $bar_code 商品条形码
+     * @return mixed
+     */
+    public function get_items_by_shop_id_and_bar_code($shop_id, $bar_code)
+    {
+        return $this->client->call("eleme.product.item.getItemsByShopIdAndBarCode", array("shopId" => $shop_id, "barCode" => $bar_code));
     }
 
     /** 批量修改商品价格

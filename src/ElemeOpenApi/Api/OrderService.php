@@ -176,4 +176,52 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.callDelivery", array("orderId" => $order_id, "fee" => $fee));
     }
 
+    /** 获取店铺未回复的催单
+     * @param $shop_id 店铺id
+     * @return mixed
+     */
+    public function get_unreply_reminders($shop_id)
+    {
+        return $this->client->call("eleme.order.getUnreplyReminders", array("shopId" => $shop_id));
+    }
+
+    /** 查询店铺未处理订单
+     * @param $shop_id 店铺id
+     * @return mixed
+     */
+    public function get_unprocess_orders($shop_id)
+    {
+        return $this->client->call("eleme.order.getUnprocessOrders", array("shopId" => $shop_id));
+    }
+
+    /** 查询店铺未处理的取消单
+     * @param $shop_id 店铺id
+     * @return mixed
+     */
+    public function get_cancel_orders($shop_id)
+    {
+        return $this->client->call("eleme.order.getCancelOrders", array("shopId" => $shop_id));
+    }
+
+    /** 查询店铺未处理的退单
+     * @param $shop_id 店铺id
+     * @return mixed
+     */
+    public function get_refund_orders($shop_id)
+    {
+        return $this->client->call("eleme.order.getRefundOrders", array("shopId" => $shop_id));
+    }
+
+    /** 查询全部订单
+     * @param $shop_id 店铺id
+     * @param $page_no 页码。取值范围:大于零的整数最大限制为100; 默认值:1
+     * @param $page_size 每页获取条数。默认值20，最小值1，最大值50。
+     * @param $date 日期,默认当天,格式:yyyy-MM-dd
+     * @return mixed
+     */
+    public function get_all_orders($shop_id, $page_no, $page_size, $date)
+    {
+        return $this->client->call("eleme.order.getAllOrders", array("shopId" => $shop_id, "pageNo" => $page_no, "pageSize" => $page_size, "date" => $date));
+    }
+
 }
