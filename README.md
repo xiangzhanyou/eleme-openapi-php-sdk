@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [1.8.0]
+
+    Release Date : 2017-05-24
+
+- [Feature] 更新了商户服务
+
+
 ### [1.7.0]
 
     Release Date : 2017-05-18
