@@ -317,7 +317,7 @@ class ProductService extends RpcService
 
     /** 批量修改商品价格
      * @param $shop_id 店铺Id
-     * @param $spec_prices 商品Id及其下SkuId和价格对应Map
+     * @param $spec_prices 商品Id及其下SkuId和价格对应Map(限制最多50个)
      * @return mixed
      */
     public function batch_update_prices($shop_id, $spec_prices)

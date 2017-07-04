@@ -47,4 +47,14 @@ class ShopService extends RpcService
         return $this->client->call("eleme.shop.setDeliveryTime", array("shopId" => $shop_id, "deliveryBasicMins" => $delivery_basic_mins, "deliveryAdjustMins" => $delivery_adjust_mins));
     }
 
+    /** 设置是否支持在线退单
+     * @param $shop_id 店铺Id
+     * @param $enable 是否支持
+     * @return mixed
+     */
+    public function set_online_refund($shop_id, $enable)
+    {
+        return $this->client->call("eleme.shop.setOnlineRefund", array("shopId" => $shop_id, "enable" => $enable));
+    }
+
 }

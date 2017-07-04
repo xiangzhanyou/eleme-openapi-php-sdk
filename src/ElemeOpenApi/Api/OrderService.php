@@ -280,8 +280,8 @@ class OrderService extends RpcService
 
     /** 查询全部订单
      * @param $shop_id 店铺id
-     * @param $page_no 页码。取值范围:大于零的整数最大限制为100; 默认值:1
-     * @param $page_size 每页获取条数。默认值20，最小值1，最大值50。
+     * @param $page_no 页码。取值范围:大于零的整数最大限制为100
+     * @param $page_size 每页获取条数。最小值1，最大值50。
      * @param $date 日期,默认当天,格式:yyyy-MM-dd
      * @return mixed
      */
