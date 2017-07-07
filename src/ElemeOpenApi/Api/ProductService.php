@@ -325,4 +325,13 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.item.batchUpdatePrices", array("shopId" => $shop_id, "specPrices" => $spec_prices));
     }
 
+    /** 查询活动商品
+     * @param $shop_id 店铺Id
+     * @return mixed
+     */
+    public function get_item_ids_has_activity_by_shop_id($shop_id)
+    {
+        return $this->client->call("eleme.product.item.getItemIdsHasActivityByShopId", array("shopId" => $shop_id));
+    }
+
 }

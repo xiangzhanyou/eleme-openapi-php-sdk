@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [1.11.0]
+
+    Release Date : 2017-07-07
+
+- [Feature] 更新了商品服务
+
+
 ### [1.10.0]
 
     Release Date : 2017-07-04
