@@ -20,7 +20,7 @@ if ($content == null) {
 $message = convert_to_message($content);
 
 //校验签名
-$result = check_signature($message, Config::get_app_secret());
+$result = check_signature($message, $config->get_app_secret());
 if ($result == false) {
     throw new Exception("invalid signature");
 }
