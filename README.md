@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [1.12.0]
+
+    Release Date : 2017-08-03
+
+- [Feature] 更新了金融服务
+
+
 ### [1.11.0]
 
     Release Date : 2017-07-07
