@@ -290,4 +290,31 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.getAllOrders", array("shopId" => $shop_id, "pageNo" => $page_no, "pageSize" => $page_size, "date" => $date));
     }
 
+    /** 批量查询订单是否支持索赔
+     * @param $order_ids 索赔订单Id的列表
+     * @return mixed
+     */
+    public function query_supported_compensation_orders($order_ids)
+    {
+        return $this->client->call("eleme.order.querySupportedCompensationOrders", array("orderIds" => $order_ids));
+    }
+
+    /** 批量申请索赔
+     * @param $requests 索赔请求的列表
+     * @return mixed
+     */
+    public function batch_apply_compensations($requests)
+    {
+        return $this->client->call("eleme.order.batchApplyCompensations", array("requests" => $requests));
+    }
+
+    /** 批量查询索赔结果
+     * @param $order_ids 索赔订单Id的列表
+     * @return mixed
+     */
+    public function query_compensation_orders($order_ids)
+    {
+        return $this->client->call("eleme.order.queryCompensationOrders", array("orderIds" => $order_ids));
+    }
+
 }

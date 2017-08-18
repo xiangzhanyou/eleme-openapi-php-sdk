@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [1.13.0]
+
+    Release Date : 2017-08-18
+
+- [Feature] 更新了订单服务
+
+
 ### [1.12.0]
 
     Release Date : 2017-08-03
