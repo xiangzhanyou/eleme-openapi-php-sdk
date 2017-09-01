@@ -161,12 +161,11 @@ class UgcService extends RpcService
     /** 批量回复订单未回复的评论
      * @param $order_ids 订单id
      * @param $reply 回复信息
-     * @param $reply 回复信息
      * @return mixed
      */
-    public function reply_comment_by_order_ids($order_ids, $reply, $reply)
+    public function reply_comment_by_order_ids($order_ids, $reply)
     {
-        return $this->client->call("eleme.ugc.replyCommentByOrderIds", array("orderIds" => $order_ids, "reply" => $reply, "reply" => $reply));
+        return $this->client->call("eleme.ugc.replyCommentByOrderIds", array("orderIds" => $order_ids, "reply" => $reply));
     }
 
     /** 回复商品回复的评论
