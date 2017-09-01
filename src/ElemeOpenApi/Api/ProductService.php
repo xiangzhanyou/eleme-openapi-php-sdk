@@ -8,6 +8,33 @@ namespace ElemeOpenApi\Api;
 class ProductService extends RpcService
 {
 
+    /** 上传图片，返回图片的hash值
+     * @param $image 文件内容base64编码值
+     * @return mixed
+     */
+    public function upload_image($image)
+    {
+        return $this->client->call("eleme.file.uploadImage", array("image" => $image));
+    }
+
+    /** 通过远程_u_r_l上传图片，返回图片的hash值
+     * @param $url 远程Url地址
+     * @return mixed
+     */
+    public function upload_image_with_remote_url($url)
+    {
+        return $this->client->call("eleme.file.uploadImageWithRemoteUrl", array("url" => $url));
+    }
+
+    /** 获取上传文件的访问_u_r_l，返回文件的_url地址
+     * @param $hash 图片hash值
+     * @return mixed
+     */
+    public function get_uploaded_url($hash)
+    {
+        return $this->client->call("eleme.file.getUploadedUrl", array("hash" => $hash));
+    }
+
     /** 查询店铺商品分类
      * @param $shop_id 店铺Id
      * @return mixed
@@ -126,33 +153,6 @@ class ProductService extends RpcService
     public function get_back_category($shop_id)
     {
         return $this->client->call("eleme.product.category.getBackCategory", array("shopId" => $shop_id));
-    }
-
-    /** 上传图片，返回图片的hash值
-     * @param $image 文件内容base64编码值
-     * @return mixed
-     */
-    public function upload_image($image)
-    {
-        return $this->client->call("eleme.file.uploadImage", array("image" => $image));
-    }
-
-    /** 通过远程_u_r_l上传图片，返回图片的hash值
-     * @param $url 远程Url地址
-     * @return mixed
-     */
-    public function upload_image_with_remote_url($url)
-    {
-        return $this->client->call("eleme.file.uploadImageWithRemoteUrl", array("url" => $url));
-    }
-
-    /** 获取上传文件的访问_u_r_l，返回文件的_url地址
-     * @param $hash 图片hash值
-     * @return mixed
-     */
-    public function get_uploaded_url($hash)
-    {
-        return $this->client->call("eleme.file.getUploadedUrl", array("hash" => $hash));
     }
 
     /** 获取一个分类下的所有商品
