@@ -112,6 +112,12 @@
 
 ## CHANGELOG:
 
+### [1.15.0]
+
+    Release Date : 2017-09-01
+
+
+
 ### [1.14.0]
 
     Release Date : 2017-09-01
