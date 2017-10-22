@@ -93,11 +93,12 @@ class UgcService extends RpcService
      * @param $start_time   开始时间,只能查询最近90天的数据
      * @param $end_time   结束时间
      * @param $offset 页面偏移量
+     * @param $page_size 页面大小
      * @return mixed
      */
-    public function get_item_rates_by_item_id($item_id, $start_time, $end_time, $offset)
+    public function get_item_rates_by_item_id($item_id, $start_time, $end_time, $offset, $page_size)
     {
-        return $this->client->call("eleme.ugc.getItemRatesByItemId", array("itemId" => $item_id, "startTime" => $start_time, "endTime" => $end_time, "offset" => $offset));
+        return $this->client->call("eleme.ugc.getItemRatesByItemId", array("itemId" => $item_id, "startTime" => $start_time, "endTime" => $end_time, "offset" => $offset, "pageSize" => $page_size));
     }
 
     /** 获取多个商品的评论

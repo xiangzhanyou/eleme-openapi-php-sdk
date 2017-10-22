@@ -8,6 +8,52 @@ namespace ElemeOpenApi\Api;
 class ActivityService extends RpcService
 {
 
+    /** 创建代金券活动
+     * @param $create_info 创建代金券活动的结构体
+     * @return mixed
+     */
+    public function create_coupon_activity($create_info)
+    {
+        return $this->client->call("eleme.activity.coupon.createCouponActivity", array("createInfo" => $create_info));
+    }
+
+    /** 向指定用户发放代金券
+     * @param $shop_id 店铺Id
+     * @param $coupon_activity_id 代金券活动Id
+     * @param $mobiles 需要发放代金券的用户手机号列表
+     * @return mixed
+     */
+    public function give_out_coupons($shop_id, $coupon_activity_id, $mobiles)
+    {
+        return $this->client->call("eleme.activity.coupon.giveOutCoupons", array("shopId" => $shop_id, "couponActivityId" => $coupon_activity_id, "mobiles" => $mobiles));
+    }
+
+    /** 分页查询店铺代金券活动信息
+     * @param $shop_id 店铺Id
+     * @param $coupon_activity_type 代金券活动类型
+     * @param $activity_status 活动状态
+     * @param $page_no 页码（第几页）
+     * @param $page_size 每页数量
+     * @return mixed
+     */
+    public function query_coupon_activities($shop_id, $coupon_activity_type, $activity_status, $page_no, $page_size)
+    {
+        return $this->client->call("eleme.activity.coupon.queryCouponActivities", array("shopId" => $shop_id, "couponActivityType" => $coupon_activity_type, "activityStatus" => $activity_status, "pageNo" => $page_no, "pageSize" => $page_size));
+    }
+
+    /** 分页查询店铺代金券领取详情
+     * @param $shop_id 店铺Id
+     * @param $coupon_activity_id 代金券活动Id
+     * @param $coupon_status 代金券状态
+     * @param $page_no 页码（第几页）
+     * @param $page_size 每页数量
+     * @return mixed
+     */
+    public function query_received_coupon_details($shop_id, $coupon_activity_id, $coupon_status, $page_no, $page_size)
+    {
+        return $this->client->call("eleme.activity.coupon.queryReceivedCouponDetails", array("shopId" => $shop_id, "couponActivityId" => $coupon_activity_id, "couponStatus" => $coupon_status, "pageNo" => $page_no, "pageSize" => $page_size));
+    }
+
     /** 查询店铺邀约活动信息
      * @param $shop_id 店铺Id
      * @return mixed

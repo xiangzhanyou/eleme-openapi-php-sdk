@@ -155,6 +155,17 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.category.getBackCategory", array("shopId" => $shop_id));
     }
 
+    /** 设置分类类型
+     * @param $shop_id 店铺Id
+     * @param $category_id 商品分类Id
+     * @param $category_type 分类类型
+     * @return mixed
+     */
+    public function set_category_type($shop_id, $category_id, $category_type)
+    {
+        return $this->client->call("eleme.product.category.setCategoryType", array("shopId" => $shop_id, "categoryId" => $category_id, "categoryType" => $category_type));
+    }
+
     /** 获取一个分类下的所有商品
      * @param $category_id 商品分类Id
      * @return mixed
@@ -332,6 +343,17 @@ class ProductService extends RpcService
     public function get_item_ids_has_activity_by_shop_id($shop_id)
     {
         return $this->client->call("eleme.product.item.getItemIdsHasActivityByShopId", array("shopId" => $shop_id));
+    }
+
+    /** 设置订单餐盒费
+     * @param $shop_id  店铺ID
+     * @param $status 是否按照订单设置餐盒费
+     * @param $packing_fee 订单餐盒费费用
+     * @return mixed
+     */
+    public function set_order_packing_fee($shop_id, $status, $packing_fee)
+    {
+        return $this->client->call("eleme.product.item.setOrderPackingFee", array("shopId" => $shop_id, "status" => $status, "packingFee" => $packing_fee));
     }
 
 }
