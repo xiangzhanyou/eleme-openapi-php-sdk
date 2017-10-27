@@ -54,6 +54,70 @@ class ActivityService extends RpcService
         return $this->client->call("eleme.activity.coupon.queryReceivedCouponDetails", array("shopId" => $shop_id, "couponActivityId" => $coupon_activity_id, "couponStatus" => $coupon_status, "pageNo" => $page_no, "pageSize" => $page_size));
     }
 
+    /** 通过店铺_id查询该店铺被邀约的美食活动
+     * @param $shop_id 店铺Id
+     * @return mixed
+     */
+    public function query_invited_food_activities($shop_id)
+    {
+        return $this->client->call("eleme.activity.food.queryInvitedFoodActivities", array("shopId" => $shop_id));
+    }
+
+    /** 报名美食活动
+     * @param $activity_id 活动Id
+     * @param $activity_apply_info 活动报名信息
+     * @return mixed
+     */
+    public function apply_food_activity($activity_id, $activity_apply_info)
+    {
+        return $this->client->call("eleme.activity.food.applyFoodActivity", array("activityId" => $activity_id, "activityApplyInfo" => $activity_apply_info));
+    }
+
+    /** 通过店铺_id和活动_id分页查询店铺已报名的美食活动
+     * @param $activity_id 活动Id
+     * @param $shop_id 店铺Id
+     * @param $page_no 页码
+     * @param $page_size 每页数量
+     * @return mixed
+     */
+    public function query_food_activities($activity_id, $shop_id, $page_no, $page_size)
+    {
+        return $this->client->call("eleme.activity.food.queryFoodActivities", array("activityId" => $activity_id, "shopId" => $shop_id, "pageNo" => $page_no, "pageSize" => $page_size));
+    }
+
+    /** 修改美食活动的菜品库存
+     * @param $activity_id 活动Id
+     * @param $shop_id 店铺Id
+     * @param $item_id 菜品Id
+     * @param $stock 库存
+     * @return mixed
+     */
+    public function update_food_activity_item_stock($activity_id, $shop_id, $item_id, $stock)
+    {
+        return $this->client->call("eleme.activity.food.updateFoodActivityItemStock", array("activityId" => $activity_id, "shopId" => $shop_id, "itemId" => $item_id, "stock" => $stock));
+    }
+
+    /** 取消参与了美食活动的菜品
+     * @param $activity_id 活动Id
+     * @param $shop_id 店铺Id
+     * @param $item_id 菜品Id
+     * @return mixed
+     */
+    public function offline_food_activity_item($activity_id, $shop_id, $item_id)
+    {
+        return $this->client->call("eleme.activity.food.offlineFoodActivityItem", array("activityId" => $activity_id, "shopId" => $shop_id, "itemId" => $item_id));
+    }
+
+    /** 作废店铺与美食活动的关联关系
+     * @param $activity_id 活动Id
+     * @param $shop_id 店铺Id
+     * @return mixed
+     */
+    public function unbind_food_activity($activity_id, $shop_id)
+    {
+        return $this->client->call("eleme.activity.food.unbindFoodActivity", array("activityId" => $activity_id, "shopId" => $shop_id));
+    }
+
     /** 查询店铺邀约活动信息
      * @param $shop_id 店铺Id
      * @return mixed
