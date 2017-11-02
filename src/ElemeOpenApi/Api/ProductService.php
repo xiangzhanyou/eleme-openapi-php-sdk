@@ -35,6 +35,15 @@ class ProductService extends RpcService
         return $this->client->call("eleme.file.getUploadedUrl", array("hash" => $hash));
     }
 
+    /** 获取上传图片的url地址(新版)
+     * @param $hash 图片hash值
+     * @return mixed
+     */
+    public function get_image_url($hash)
+    {
+        return $this->client->call("eleme.file.getImageUrl", array("hash" => $hash));
+    }
+
     /** 查询店铺商品分类
      * @param $shop_id 店铺Id
      * @return mixed
@@ -126,6 +135,15 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.category.removeCategory", array("categoryId" => $category_id));
     }
 
+    /** 删除商品分类(新版)
+     * @param $category_id 商品分类Id
+     * @return mixed
+     */
+    public function invalid_category($category_id)
+    {
+        return $this->client->call("eleme.product.category.invalidCategory", array("categoryId" => $category_id));
+    }
+
     /** 设置分类排序
      * @param $shop_id 饿了么店铺Id
      * @param $category_ids 需要排序的分类Id
@@ -134,6 +152,16 @@ class ProductService extends RpcService
     public function set_category_positions($shop_id, $category_ids)
     {
         return $this->client->call("eleme.product.category.setCategoryPositions", array("shopId" => $shop_id, "categoryIds" => $category_ids));
+    }
+
+    /** 设置分类排序(新版)
+     * @param $shop_id 饿了么店铺Id
+     * @param $category_ids 需要排序的全部一级分类Id
+     * @return mixed
+     */
+    public function set_category_sequence($shop_id, $category_ids)
+    {
+        return $this->client->call("eleme.product.category.setCategorySequence", array("shopId" => $shop_id, "categoryIds" => $category_ids));
     }
 
     /** 设置二级分类排序
@@ -251,6 +279,15 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.item.batchOnShelf", array("specIds" => $spec_ids));
     }
 
+    /** 批量上架商品(新版)
+     * @param $item_ids 商品ID列表
+     * @return mixed
+     */
+    public function batch_list_items($item_ids)
+    {
+        return $this->client->call("eleme.product.item.batchListItems", array("itemIds" => $item_ids));
+    }
+
     /** 批量下架商品
      * @param $spec_ids 商品及商品规格的列表
      * @return mixed
@@ -260,6 +297,15 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.item.batchOffShelf", array("specIds" => $spec_ids));
     }
 
+    /** 批量下架商品(新版)
+     * @param $item_ids 商品ID列表
+     * @return mixed
+     */
+    public function batch_delist_items($item_ids)
+    {
+        return $this->client->call("eleme.product.item.batchDelistItems", array("itemIds" => $item_ids));
+    }
+
     /** 删除商品
      * @param $item_id 商品Id
      * @return mixed
@@ -267,6 +313,15 @@ class ProductService extends RpcService
     public function remove_item($item_id)
     {
         return $this->client->call("eleme.product.item.removeItem", array("itemId" => $item_id));
+    }
+
+    /** 删除商品(新版)
+     * @param $item_id 商品Id
+     * @return mixed
+     */
+    public function invalid_item($item_id)
+    {
+        return $this->client->call("eleme.product.item.invalidItem", array("itemId" => $item_id));
     }
 
     /** 批量删除商品
@@ -285,6 +340,15 @@ class ProductService extends RpcService
     public function batch_update_spec_stocks($spec_stocks)
     {
         return $this->client->call("eleme.product.item.batchUpdateSpecStocks", array("specStocks" => $spec_stocks));
+    }
+
+    /** 批量更新商品库存(新版)
+     * @param $stock_map 商品规格ID和库存设值的映射
+     * @return mixed
+     */
+    public function batch_update_stock($stock_map)
+    {
+        return $this->client->call("eleme.product.item.batchUpdateStock", array("stockMap" => $stock_map));
     }
 
     /** 设置商品排序
@@ -343,6 +407,15 @@ class ProductService extends RpcService
     public function get_item_ids_has_activity_by_shop_id($shop_id)
     {
         return $this->client->call("eleme.product.item.getItemIdsHasActivityByShopId", array("shopId" => $shop_id));
+    }
+
+    /** 查询店铺活动商品(新版)
+     * @param $shop_id 店铺Id
+     * @return mixed
+     */
+    public function get_shop_sales_items($shop_id)
+    {
+        return $this->client->call("eleme.product.item.getShopSalesItems", array("shopId" => $shop_id));
     }
 
     /** 设置订单餐盒费
