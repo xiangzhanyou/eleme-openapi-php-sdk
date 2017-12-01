@@ -27,7 +27,7 @@ class FinanceService extends RpcService
     }
 
     /** 查询总店账单
-     * @param $shop_id 饿了么店总店店铺id
+     * @param $shop_id 饿了么总店店铺id
      * @param $query 查询条件
      * @return mixed
      */
@@ -37,7 +37,7 @@ class FinanceService extends RpcService
     }
 
     /** 查询总店订单
-     * @param $shop_id 饿了么店总店店铺id
+     * @param $shop_id 饿了么总店店铺id
      * @param $query 查询条件
      * @return mixed
      */
@@ -47,7 +47,7 @@ class FinanceService extends RpcService
     }
 
     /** 查询分店账单
-     * @param $shop_id 饿了么店总店店铺id
+     * @param $shop_id 饿了么分店店铺id
      * @param $query 查询条件
      * @return mixed
      */
@@ -57,7 +57,7 @@ class FinanceService extends RpcService
     }
 
     /** 查询分店订单
-     * @param $shop_id 饿了么店总店店铺id
+     * @param $shop_id 饿了么分店店铺id
      * @param $query 查询条件
      * @return mixed
      */
@@ -67,7 +67,7 @@ class FinanceService extends RpcService
     }
 
     /** 查询订单
-     * @param $shop_id 饿了么店总店店铺id
+     * @param $shop_id 饿了么店铺id
      * @param $order_id 订单id
      * @return mixed
      */

@@ -112,6 +112,14 @@
 
 ## CHANGELOG:
 
+### [1.18.0]
+
+    Release Date : 2017-12-01
+
+- [Feature] 更新了金融服务
+- [Feature] 更新了订单服务
+
+
 ### [1.17.0]
 
     Release Date : 2017-10-27

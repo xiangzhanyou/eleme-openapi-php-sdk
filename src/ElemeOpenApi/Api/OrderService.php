@@ -123,6 +123,7 @@ class OrderService extends RpcService
     }
 
     /** 配送异常或者物流拒单后选择自行配送(推荐)
+     全推调用
      * @param $order_id 订单Id
      * @return mixed
      */
@@ -141,6 +142,7 @@ class OrderService extends RpcService
     }
 
     /** 配送异常或者物流拒单后选择不再配送(推荐)
+     全推调用
      * @param $order_id 订单Id
      * @return mixed
      */
@@ -315,6 +317,15 @@ class OrderService extends RpcService
     public function query_compensation_orders($order_ids)
     {
         return $this->client->call("eleme.order.queryCompensationOrders", array("orderIds" => $order_ids));
+    }
+
+    /** 众包订单询价，获取配送费
+     * @param $order_id 订单Id
+     * @return mixed
+     */
+    public function get_delivery_fee_for_crowd($order_id)
+    {
+        return $this->client->call("eleme.order.getDeliveryFeeForCrowd", array("orderId" => $order_id));
     }
 
 }
