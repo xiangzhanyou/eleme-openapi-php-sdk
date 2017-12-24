@@ -193,4 +193,28 @@ class UgcService extends RpcService
         return $this->client->call("eleme.ugc.replyRatesByItemIds", array("itemIds" => $item_ids, "reply" => $reply, "startTime" => $start_time, "endTime" => $end_time));
     }
 
+    /** 通过rate_id和shop_id 回复指定类型的评论
+     * @param $rate_id 评论编号
+     * @param $shop_id  餐厅id
+     * @param $reply_type 评论类型
+     * @param $reply 回复的内容
+     * @return mixed
+     */
+    public function reply_rate_by_rate_id_and_shop_id($rate_id, $shop_id, $reply_type, $reply)
+    {
+        return $this->client->call("eleme.ugc.replyRateByRateIdAndShopId", array("rateId" => $rate_id, "shopId" => $shop_id, "replyType" => $reply_type, "reply" => $reply));
+    }
+
+    /** 通过rate_ids和shop_id 批量回复指定类型的评论
+     * @param $rate_ids  评论编号
+     * @param $shop_id  餐厅id
+     * @param $reply_type 评论类型
+     * @param $reply 回复的内容
+     * @return mixed
+     */
+    public function reply_rate_by_rate_ids_and_shop_id($rate_ids, $shop_id, $reply_type, $reply)
+    {
+        return $this->client->call("eleme.ugc.replyRateByRateIdsAndShopId", array("rateIds" => $rate_ids, "shopId" => $shop_id, "replyType" => $reply_type, "reply" => $reply));
+    }
+
 }

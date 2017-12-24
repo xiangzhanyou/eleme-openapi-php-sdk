@@ -328,4 +328,80 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.getDeliveryFeeForCrowd", array("orderId" => $order_id));
     }
 
+    /** 评价骑手
+     * @param $order_id 订单Id
+     * @param $evaluation_info 评价信息
+     * @return mixed
+     */
+    public function evaluate_rider($order_id, $evaluation_info)
+    {
+        return $this->client->call("eleme.order.evaluateRider", array("orderId" => $order_id, "evaluationInfo" => $evaluation_info));
+    }
+
+    /** 批量获取骑手评价信息
+     * @param $order_ids 订单Id的列表
+     * @return mixed
+     */
+    public function mget_evaluation_infos($order_ids)
+    {
+        return $this->client->call("eleme.order.mgetEvaluationInfos", array("orderIds" => $order_ids));
+    }
+
+    /** 批量获取是否可以评价骑手
+     * @param $order_ids 订单Id的列表
+     * @return mixed
+     */
+    public function mget_evaluation_status($order_ids)
+    {
+        return $this->client->call("eleme.order.mgetEvaluationStatus", array("orderIds" => $order_ids));
+    }
+
+    /** 批量获取订单加小费信息
+     * @param $order_ids 订单Id的列表
+     * @return mixed
+     */
+    public function mget_delivery_tip_infos($order_ids)
+    {
+        return $this->client->call("eleme.order.mgetDeliveryTipInfos", array("orderIds" => $order_ids));
+    }
+
+    /** 订单加小费
+     * @param $order_id 订单Id
+     * @param $tip 小费金额
+     * @return mixed
+     */
+    public function add_delivery_tip_by_order_id($order_id, $tip)
+    {
+        return $this->client->call("eleme.order.addDeliveryTipByOrderId", array("orderId" => $order_id, "tip" => $tip));
+    }
+
+    /** 主动发起退单
+     * @param $order_id 订单Id
+     * @param $type 取消原因
+     * @param $remark 备注说明
+     * @return mixed
+     */
+    public function apply_refund($order_id, $type, $remark)
+    {
+        return $this->client->call("eleme.order.applyRefund", array("orderId" => $order_id, "type" => $type, "remark" => $remark));
+    }
+
+    /** 非自配送餐厅标记已出餐
+     * @param $order_id 订单Id
+     * @return mixed
+     */
+    public function set_order_prepared($order_id)
+    {
+        return $this->client->call("eleme.order.setOrderPrepared", array("orderId" => $order_id));
+    }
+
+    /** 查询已出餐列表
+     * @param $order_ids 查询已出餐订单Id的列表
+     * @return mixed
+     */
+    public function get_prepared_times_by_order_ids($order_ids)
+    {
+        return $this->client->call("eleme.order.getPreparedTimesByOrderIds", array("orderIds" => $order_ids));
+    }
+
 }
