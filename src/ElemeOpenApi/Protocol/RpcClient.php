@@ -154,6 +154,8 @@ class RpcClient
         if ($log != null) {
             $log->info("response: " . $response);
         }
+
+        curl_close($ch);
         return $response;
     }
 }
