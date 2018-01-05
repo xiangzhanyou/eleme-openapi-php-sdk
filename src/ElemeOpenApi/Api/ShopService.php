@@ -57,4 +57,15 @@ class ShopService extends RpcService
         return $this->client->call("eleme.shop.setOnlineRefund", array("shopId" => $shop_id, "enable" => $enable));
     }
 
+    /** 设置是否支持预定单及预定天数
+     * @param $shop_id 店铺id
+     * @param $enabled 是否支持预订
+     * @param $max_booking_days 最大预定天数
+     * @return mixed
+     */
+    public function set_booking_status($shop_id, $enabled, $max_booking_days)
+    {
+        return $this->client->call("eleme.shop.setBookingStatus", array("shopId" => $shop_id, "enabled" => $enabled, "maxBookingDays" => $max_booking_days));
+    }
+
 }

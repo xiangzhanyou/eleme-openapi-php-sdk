@@ -429,4 +429,13 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.item.setOrderPackingFee", array("shopId" => $shop_id, "status" => $status, "packingFee" => $packing_fee));
     }
 
+    /** 分页获取店铺下的商品
+     * @param $query_page 分页查询参数
+     * @return mixed
+     */
+    public function query_item_by_page($query_page)
+    {
+        return $this->client->call("eleme.product.item.queryItemByPage", array("queryPage" => $query_page));
+    }
+
 }

@@ -112,6 +112,14 @@
 
 ## CHANGELOG:
 
+### [1.20.0]
+
+    Release Date : 2018-01-05
+
+- [Feature] 更新了商品服务
+- [Feature] 更新了店铺服务
+
+
 ### [1.19.0]
 
     Release Date : 2017-12-24
