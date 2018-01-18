@@ -112,6 +112,14 @@
 
 ## CHANGELOG:
 
+### [1.21.0]
+
+    Release Date : 2018-01-18
+
+- [Feature] 新增了服务市场服务
+- [Feature] 更新了订单评论服务
+
+
 ### [1.20.0]
 
     Release Date : 2018-01-05

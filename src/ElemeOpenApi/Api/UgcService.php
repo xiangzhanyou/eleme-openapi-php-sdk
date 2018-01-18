@@ -127,28 +127,6 @@ class UgcService extends RpcService
         return $this->client->call("eleme.ugc.getUnreplyItemRatesByItemIds", array("itemIds" => $item_ids, "startTime" => $start_time, "endTime" => $end_time, "offset" => $offset, "pageSize" => $page_size));
     }
 
-    /** 回复指定类型的评论
-     * @param $rate_id 评论编号
-     * @param $reply_type 评论类型
-     * @param $reply 回复的内容
-     * @return mixed
-     */
-    public function reply_rate_by_rate_id($rate_id, $reply_type, $reply)
-    {
-        return $this->client->call("eleme.ugc.replyRateByRateId", array("rateId" => $rate_id, "replyType" => $reply_type, "reply" => $reply));
-    }
-
-    /** 回复指定类型的评论
-     * @param $rate_ids  评论编号
-     * @param $reply_type 评论类型
-     * @param $reply 回复的内容
-     * @return mixed
-     */
-    public function reply_rate_by_rate_ids($rate_ids, $reply_type, $reply)
-    {
-        return $this->client->call("eleme.ugc.replyRateByRateIds", array("rateIds" => $rate_ids, "replyType" => $reply_type, "reply" => $reply));
-    }
-
     /** 回复订单未回复的评论
      * @param $order_id 订单id
      * @param $reply 回复内容
@@ -215,6 +193,43 @@ class UgcService extends RpcService
     public function reply_rate_by_rate_ids_and_shop_id($rate_ids, $shop_id, $reply_type, $reply)
     {
         return $this->client->call("eleme.ugc.replyRateByRateIdsAndShopId", array("rateIds" => $rate_ids, "shopId" => $shop_id, "replyType" => $reply_type, "reply" => $reply));
+    }
+
+    /** 根据订单_i_d赠送代金券给该订单的评价用户
+     * @param $order_id  订单编号
+     * @param $coupon 需要赠送的代金券信息
+     * @return mixed
+     */
+    public function send_coupon_by_order_id($order_id, $coupon)
+    {
+        return $this->client->call("eleme.ugc.sendCouponByOrderId", array("orderId" => $order_id, "coupon" => $coupon));
+    }
+
+    /** 根据订单_i_d获取该订单评价用户的可赠券状态
+     * @param $order_id  订单编号
+     * @return mixed
+     */
+    public function get_order_coupon_status($order_id)
+    {
+        return $this->client->call("eleme.ugc.getOrderCouponStatus", array("orderId" => $order_id));
+    }
+
+    /** 根据订单_i_d集合获取该订单的已赠券信息集合
+     * @param $order_ids 订单编号集合
+     * @return mixed
+     */
+    public function get_coupons_by_order_ids($order_ids)
+    {
+        return $this->client->call("eleme.ugc.getCouponsByOrderIds", array("orderIds" => $order_ids));
+    }
+
+    /** 获取店铺的推荐赠送代金券信息
+     * @param $shop_id 餐厅ID
+     * @return mixed
+     */
+    public function get_recommend_coupon_by_shop_id($shop_id)
+    {
+        return $this->client->call("eleme.ugc.getRecommendCouponByShopId", array("shopId" => $shop_id));
     }
 
 }
