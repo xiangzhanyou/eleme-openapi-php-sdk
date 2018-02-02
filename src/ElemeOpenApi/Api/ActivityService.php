@@ -28,6 +28,17 @@ class ActivityService extends RpcService
         return $this->client->call("eleme.activity.coupon.giveOutCoupons", array("shopId" => $shop_id, "couponActivityId" => $coupon_activity_id, "mobiles" => $mobiles));
     }
 
+    /** 定向赠红包
+     * @param $shop_id 店铺Id
+     * @param $mobile 需要发放红包的用户手机号
+     * @param $coupon_template 定向赠红包的模板信息
+     * @return mixed
+     */
+    public function present_coupon($shop_id, $mobile, $coupon_template)
+    {
+        return $this->client->call("eleme.activity.coupon.presentCoupon", array("shopId" => $shop_id, "mobile" => $mobile, "couponTemplate" => $coupon_template));
+    }
+
     /** 分页查询店铺代金券活动信息
      * @param $shop_id 店铺Id
      * @param $coupon_activity_type 代金券活动类型

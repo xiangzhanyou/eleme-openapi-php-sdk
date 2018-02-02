@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [1.22.0]
+
+    Release Date : 2018-02-02
+
+- [Feature] 更新了活动服务
+
+
 ### [1.21.0]
 
     Release Date : 2018-01-18
