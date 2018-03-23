@@ -68,4 +68,13 @@ class ShopService extends RpcService
         return $this->client->call("eleme.shop.setBookingStatus", array("shopId" => $shop_id, "enabled" => $enabled, "maxBookingDays" => $max_booking_days));
     }
 
+    /** 批量通过店铺_id获取_oid
+     * @param $shop_ids 店铺Id的列表
+     * @return mixed
+     */
+    public function get_oid_by_shop_ids($shop_ids)
+    {
+        return $this->client->call("eleme.shop.getOidByShopIds", array("shopIds" => $shop_ids));
+    }
+
 }

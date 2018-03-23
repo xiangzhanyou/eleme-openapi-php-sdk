@@ -112,6 +112,16 @@
 
 ## CHANGELOG:
 
+### [1.23.0]
+
+    Release Date : 2018-03-23
+
+- [Feature] 更新了活动服务
+- [Feature] 新增了餐厅入口流量服务
+- [Feature] 更新了订单服务
+- [Feature] 更新了店铺服务
+
+
 ### [1.22.0]
 
     Release Date : 2018-02-02

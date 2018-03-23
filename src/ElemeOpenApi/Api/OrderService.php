@@ -123,7 +123,6 @@ class OrderService extends RpcService
     }
 
     /** 配送异常或者物流拒单后选择自行配送(推荐)
-     全推调用
      * @param $order_id 订单Id
      * @return mixed
      */
@@ -142,7 +141,6 @@ class OrderService extends RpcService
     }
 
     /** 配送异常或者物流拒单后选择不再配送(推荐)
-     全推调用
      * @param $order_id 订单Id
      * @return mixed
      */
@@ -402,6 +400,15 @@ class OrderService extends RpcService
     public function get_prepared_times_by_order_ids($order_ids)
     {
         return $this->client->call("eleme.order.getPreparedTimesByOrderIds", array("orderIds" => $order_ids));
+    }
+
+    /** 查询顾客联系方式
+     * @param $order_ids 订单ID的列表
+     * @return mixed
+     */
+    public function mget_user_simple_info_by_order_ids($order_ids)
+    {
+        return $this->client->call("eleme.order.mgetUserSimpleInfoByOrderIds", array("orderIds" => $order_ids));
     }
 
 }
