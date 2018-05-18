@@ -438,4 +438,13 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.item.queryItemByPage", array("queryPage" => $query_page));
     }
 
+    /** 获取原材料树
+     * @param $shop_id 店铺ID
+     * @return mixed
+     */
+    public function get_material_tree($shop_id)
+    {
+        return $this->client->call("eleme.product.item.getMaterialTree", array("shopId" => $shop_id));
+    }
+
 }

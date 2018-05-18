@@ -107,6 +107,39 @@ class ActivityService extends RpcService
         return $this->client->call("eleme.activity.coupon.rehostShop", array("shopId" => $shop_id, "hostedType" => $hosted_type, "oActivityServiceDetails" => $o_activity_service_details));
     }
 
+    /** 定向赠红包(单店红包)
+     * @param $shop_id 店铺id
+     * @param $target_list 目标列表
+     * @param $target_list_type 目标类型
+     * @param $target_coupon_detail 定向赠红包模板细节
+     * @return mixed
+     */
+    public function present_target_coupons($shop_id, $target_list, $target_list_type, $target_coupon_detail)
+    {
+        return $this->client->call("eleme.activity.coupon.presentTargetCoupons", array("shopId" => $shop_id, "targetList" => $target_list, "targetListType" => $target_list_type, "targetCouponDetail" => $target_coupon_detail));
+    }
+
+    /** 定向赠通用红包
+     * @param $chain_id 连锁店id
+     * @param $target_list 目标列表
+     * @param $target_list_type 目标类型
+     * @param $common_target_coupon_detail 通用定向赠红包模板细节
+     * @return mixed
+     */
+    public function present_common_target_coupons($chain_id, $target_list, $target_list_type, $common_target_coupon_detail)
+    {
+        return $this->client->call("eleme.activity.coupon.presentCommonTargetCoupons", array("chainId" => $chain_id, "targetList" => $target_list, "targetListType" => $target_list_type, "commonTargetCouponDetail" => $common_target_coupon_detail));
+    }
+
+    /** 分页查询店铺的定向赠红包信息
+     * @param $target_coupon_query_request 定向赠红包查询入参对象
+     * @return mixed
+     */
+    public function query_target_coupon_info($target_coupon_query_request)
+    {
+        return $this->client->call("eleme.activity.coupon.queryTargetCouponInfo", array("targetCouponQueryRequest" => $target_coupon_query_request));
+    }
+
     /** 通过店铺_id查询该店铺被邀约的美食活动
      * @param $shop_id 店铺Id
      * @return mixed

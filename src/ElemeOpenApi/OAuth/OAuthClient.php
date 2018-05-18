@@ -13,6 +13,7 @@ class OAuthClient
     private $token_url;
     private $authorize_url;
     private $log;
+    private $openId_rul;
 
     public function __construct(Config $config)
     {
@@ -21,6 +22,7 @@ class OAuthClient
         $this->secret = $config->get_app_secret();
         $this->token_url = $config->get_request_url() . "/token";
         $this->authorize_url = $config->get_request_url() . "/authorize";
+        $this->openId_rul = $config->get_request_url() . "/identity";
         $this->log = $config->get_log();
     }
 
@@ -33,7 +35,7 @@ class OAuthClient
         $body = array(
             "grant_type" => "client_credentials"
         );
-        $response = $this->request($body);
+        $response = $this->request($body,  $this->token_url);
         return $response;
     }
 
@@ -67,7 +69,7 @@ class OAuthClient
             "redirect_uri" => $callback_url,
             "client_id" => $this->client_id
         );
-        $response = $this->request($body);
+        $response = $this->request($body, $this->token_url);
         return $response;
     }
 
@@ -84,7 +86,25 @@ class OAuthClient
             "refresh_token" => $refresh_token,
             "scope" => $scope
         );
-        $response = $this->request($body);
+        $response = $this->request($body, $this->token_url);
+        return $response;
+    }
+
+    /**
+     * 通过code获取openId
+     * @param $code 授权码
+     * @param $callback_url 回调地址
+     * @return mixed
+     */
+    public function get_openId_by_code($code, $callback_url)
+    {
+        $body = array(
+            "grant_type" => "authorization_code",
+            "code" => $code,
+            "redirect_uri" => $callback_url,
+            "client_id" => $this->client_id
+        );
+        $response = $this->request($body, $this->openId_rul);
         return $response;
     }
 
@@ -96,13 +116,13 @@ class OAuthClient
             "Accept-Encoding: gzip");
     }
 
-    private function request($body)
+    private function request($body, $url)
     {
         if ($this->log != null) {
             $this->log->info("request data: " . json_encode($body));
         }
 
-        $ch = curl_init($this->token_url);
+        $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->get_headers());
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($body));

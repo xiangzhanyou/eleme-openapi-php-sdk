@@ -112,6 +112,15 @@
 
 ## CHANGELOG:
 
+### [1.24.0]
+
+    Release Date : 2018-05-18
+
+- [Feature] 更新了活动服务
+- [Feature] 更新了商品服务
+- [Feature] 新增授权码换取OpenId接口
+
+
 ### [1.23.0]
 
     Release Date : 2018-03-23
