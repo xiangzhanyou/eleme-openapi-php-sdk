@@ -35,15 +35,6 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.confirmOrderLite", array("orderId" => $order_id));
     }
 
-    /** 确认订单
-     * @param $order_id 订单Id
-     * @return mixed
-     */
-    public function confirm_order($order_id)
-    {
-        return $this->client->call("eleme.order.confirmOrder", array("orderId" => $order_id));
-    }
-
     /** 取消订单(推荐)
      * @param $order_id 订单Id
      * @param $type 取消原因
@@ -55,17 +46,6 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.cancelOrderLite", array("orderId" => $order_id, "type" => $type, "remark" => $remark));
     }
 
-    /** 取消订单
-     * @param $order_id 订单Id
-     * @param $type 取消原因
-     * @param $remark 备注说明
-     * @return mixed
-     */
-    public function cancel_order($order_id, $type, $remark)
-    {
-        return $this->client->call("eleme.order.cancelOrder", array("orderId" => $order_id, "type" => $type, "remark" => $remark));
-    }
-
     /** 同意退单/同意取消单(推荐)
      * @param $order_id 订单Id
      * @return mixed
@@ -73,15 +53,6 @@ class OrderService extends RpcService
     public function agree_refund_lite($order_id)
     {
         return $this->client->call("eleme.order.agreeRefundLite", array("orderId" => $order_id));
-    }
-
-    /** 同意退单/同意取消单
-     * @param $order_id 订单Id
-     * @return mixed
-     */
-    public function agree_refund($order_id)
-    {
-        return $this->client->call("eleme.order.agreeRefund", array("orderId" => $order_id));
     }
 
     /** 不同意退单/不同意取消单(推荐)
@@ -92,16 +63,6 @@ class OrderService extends RpcService
     public function disagree_refund_lite($order_id, $reason)
     {
         return $this->client->call("eleme.order.disagreeRefundLite", array("orderId" => $order_id, "reason" => $reason));
-    }
-
-    /** 不同意退单/不同意取消单
-     * @param $order_id 订单Id
-     * @param $reason 商家不同意退单原因
-     * @return mixed
-     */
-    public function disagree_refund($order_id, $reason)
-    {
-        return $this->client->call("eleme.order.disagreeRefund", array("orderId" => $order_id, "reason" => $reason));
     }
 
     /** 获取订单配送记录
@@ -131,15 +92,6 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.deliveryBySelfLite", array("orderId" => $order_id));
     }
 
-    /** 配送异常或者物流拒单后选择自行配送
-     * @param $order_id 订单Id
-     * @return mixed
-     */
-    public function delivery_by_self($order_id)
-    {
-        return $this->client->call("eleme.order.deliveryBySelf", array("orderId" => $order_id));
-    }
-
     /** 配送异常或者物流拒单后选择不再配送(推荐)
      * @param $order_id 订单Id
      * @return mixed
@@ -147,15 +99,6 @@ class OrderService extends RpcService
     public function no_more_delivery_lite($order_id)
     {
         return $this->client->call("eleme.order.noMoreDeliveryLite", array("orderId" => $order_id));
-    }
-
-    /** 配送异常或者物流拒单后选择不再配送
-     * @param $order_id 订单Id
-     * @return mixed
-     */
-    public function no_more_delivery($order_id)
-    {
-        return $this->client->call("eleme.order.noMoreDelivery", array("orderId" => $order_id));
     }
 
     /** 订单确认送达(推荐)
@@ -167,13 +110,24 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.receivedOrderLite", array("orderId" => $order_id));
     }
 
-    /** 订单确认送达
+    /** (自配送)订单确认送出
      * @param $order_id 订单ID
+     * @param $phone 配送者电话
      * @return mixed
      */
-    public function received_order($order_id)
+    public function start_delivery_by_self($order_id, $phone)
     {
-        return $this->client->call("eleme.order.receivedOrder", array("orderId" => $order_id));
+        return $this->client->call("eleme.order.startDeliveryBySelf", array("orderId" => $order_id, "phone" => $phone));
+    }
+
+    /** (自配送)订单确认送达
+     * @param $order_id 订单ID
+     * @param $phone 配送者电话
+     * @return mixed
+     */
+    public function complete_delivery_by_self($order_id, $phone)
+    {
+        return $this->client->call("eleme.order.completeDeliveryBySelf", array("orderId" => $order_id, "phone" => $phone));
     }
 
     /** 回复催单
