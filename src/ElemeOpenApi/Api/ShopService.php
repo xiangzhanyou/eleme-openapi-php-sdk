@@ -77,4 +77,24 @@ class ShopService extends RpcService
         return $this->client->call("eleme.shop.getOidByShopIds", array("shopIds" => $shop_ids));
     }
 
+    /** 更新店铺营业时间预设置
+     * @param $shop_id 店铺 id 
+     * @param $week_setting 一周营业时间预设置, 参考 OShopBusyLevelSetting weekSetting 字段定义 
+     * @param $date_setting 特定日期营业时间预设置, 参考 OShopBusyLevelSetting dateSetting 字段定义 
+     * @return mixed
+     */
+    public function update_busy_level_setting($shop_id, $week_setting, $date_setting)
+    {
+        return $this->client->call("eleme.shop.updateBusyLevelSetting", array("shopId" => $shop_id, "weekSetting" => $week_setting, "dateSetting" => $date_setting));
+    }
+
+    /** 获取店铺营业时间预设置
+     * @param $shop_id 店铺 id 
+     * @return mixed
+     */
+    public function get_busy_level_setting($shop_id)
+    {
+        return $this->client->call("eleme.shop.getBusyLevelSetting", array("shopId" => $shop_id));
+    }
+
 }
