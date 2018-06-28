@@ -97,4 +97,67 @@ class ShopService extends RpcService
         return $this->client->call("eleme.shop.getBusyLevelSetting", array("shopId" => $shop_id));
     }
 
+    /** 提交开店申请接口
+     * @param $open_store_message 开店申请表单
+     * @return mixed
+     */
+    public function submit_open_store_message_audit($open_store_message)
+    {
+        return $this->client->call("eleme.shop.setup.submitOpenStoreMessageAudit", array("openStoreMessage" => $open_store_message));
+    }
+
+    /** 星巴克提交开店申请接口
+     * @param $open_store_message 开店申请表单
+     * @return mixed
+     */
+    public function submit_open_store_for_mermaid($open_store_message)
+    {
+        return $this->client->call("eleme.shop.setup.submitOpenStoreForMermaid", array("openStoreMessage" => $open_store_message));
+    }
+
+    /** 更新申请信息接口
+     * @param $update_store_message_body 开店申请表单
+     * @return mixed
+     */
+    public function update_open_store_message_audit($update_store_message_body)
+    {
+        return $this->client->call("eleme.shop.setup.updateOpenStoreMessageAudit", array("updateStoreMessageBody" => $update_store_message_body));
+    }
+
+    /** 查询请求状态接口
+     * @param $submit_id 请求提交id
+     * @return mixed
+     */
+    public function query_process_status_by_submit_id($submit_id)
+    {
+        return $this->client->call("eleme.shop.setup.queryProcessStatusBySubmitId", array("submitId" => $submit_id));
+    }
+
+    /** 图片上传处理接口（5_m以内图片）
+     * @param $image_base64 base64字节流
+     * @return mixed
+     */
+    public function upload_image($image_base64)
+    {
+        return $this->client->call("eleme.shop.setup.uploadImage", array("imageBase64" => $image_base64));
+    }
+
+    /** 图片上传处理接口（500_k以内图片）
+     * @param $image_base64 base64字节流
+     * @return mixed
+     */
+    public function upload_min_image($image_base64)
+    {
+        return $this->client->call("eleme.shop.setup.uploadMinImage", array("imageBase64" => $image_base64));
+    }
+
+    /** 远程上传图片接口
+     * @param $url 图片url
+     * @return mixed
+     */
+    public function upload_image_with_remote_url($url)
+    {
+        return $this->client->call("eleme.shop.setup.uploadImageWithRemoteUrl", array("url" => $url));
+    }
+
 }

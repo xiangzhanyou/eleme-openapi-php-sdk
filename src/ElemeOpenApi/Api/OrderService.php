@@ -110,7 +110,7 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.receivedOrderLite", array("orderId" => $order_id));
     }
 
-    /** (自配送)订单确认送出
+    /** 订单确认送出(自配送)
      * @param $order_id 订单ID
      * @param $phone 配送者电话
      * @return mixed
@@ -120,7 +120,7 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.startDeliveryBySelf", array("orderId" => $order_id, "phone" => $phone));
     }
 
-    /** (自配送)订单确认送达
+    /** 订单确认送达(自配送)
      * @param $order_id 订单ID
      * @param $phone 配送者电话
      * @return mixed
@@ -363,6 +363,15 @@ class OrderService extends RpcService
     public function mget_user_simple_info_by_order_ids($order_ids)
     {
         return $this->client->call("eleme.order.mgetUserSimpleInfoByOrderIds", array("orderIds" => $order_ids));
+    }
+
+    /** 获取订单配送轨迹
+     * @param $order_id 订单Id
+     * @return mixed
+     */
+    public function get_delivery_routes($order_id)
+    {
+        return $this->client->call("eleme.order.delivery.getDeliveryRoutes", array("orderId" => $order_id));
     }
 
 }

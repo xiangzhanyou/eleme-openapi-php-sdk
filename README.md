@@ -112,6 +112,17 @@
 
 ## CHANGELOG:
 
+### [1.28.0]
+
+    Release Date : 2018-06-28
+
+- [Feature] 新增了视频服务
+- [Feature] 新增了门店装修服务
+- [Feature] 更新了订单服务
+- [Feature] 更新了商品服务
+- [Feature] 更新了店铺服务
+
+
 ### [1.27.0]
 
     Release Date : 2018-06-22

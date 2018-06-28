@@ -8,42 +8,6 @@ namespace ElemeOpenApi\Api;
 class ProductService extends RpcService
 {
 
-    /** 上传图片，返回图片的hash值
-     * @param $image 文件内容base64编码值
-     * @return mixed
-     */
-    public function upload_image($image)
-    {
-        return $this->client->call("eleme.file.uploadImage", array("image" => $image));
-    }
-
-    /** 通过远程_u_r_l上传图片，返回图片的hash值
-     * @param $url 远程Url地址
-     * @return mixed
-     */
-    public function upload_image_with_remote_url($url)
-    {
-        return $this->client->call("eleme.file.uploadImageWithRemoteUrl", array("url" => $url));
-    }
-
-    /** 获取上传文件的访问_u_r_l，返回文件的_url地址
-     * @param $hash 图片hash值
-     * @return mixed
-     */
-    public function get_uploaded_url($hash)
-    {
-        return $this->client->call("eleme.file.getUploadedUrl", array("hash" => $hash));
-    }
-
-    /** 获取上传图片的url地址(新版)
-     * @param $hash 图片hash值
-     * @return mixed
-     */
-    public function get_image_url($hash)
-    {
-        return $this->client->call("eleme.file.getImageUrl", array("hash" => $hash));
-    }
-
     /** 查询店铺商品分类
      * @param $shop_id 店铺Id
      * @return mixed
@@ -445,6 +409,74 @@ class ProductService extends RpcService
     public function get_material_tree($shop_id)
     {
         return $this->client->call("eleme.product.item.getMaterialTree", array("shopId" => $shop_id));
+    }
+
+    /** 针对主菜item_id设置菜品推荐
+     * @param $shop_id 店铺ID
+     * @param $item_id 商品ID
+     * @param $related_item_ids 关联的商品ID
+     * @return mixed
+     */
+    public function set_related_item_ids($shop_id, $item_id, $related_item_ids)
+    {
+        return $this->client->call("eleme.product.item.setRelatedItemIds", array("shopId" => $shop_id, "itemId" => $item_id, "relatedItemIds" => $related_item_ids));
+    }
+
+    /** 对主菜item_id设置是否开启菜品推荐
+     * @param $shop_id 店铺ID
+     * @param $item_id 商品ID
+     * @param $display 是否展示
+     * @return mixed
+     */
+    public function display_related_item_ids($shop_id, $item_id, $display)
+    {
+        return $this->client->call("eleme.product.item.displayRelatedItemIds", array("shopId" => $shop_id, "itemId" => $item_id, "display" => $display));
+    }
+
+    /** 针对主菜item_id查询菜品推荐
+     * @param $shop_id 店铺ID
+     * @param $item_id 商品ID
+     * @return mixed
+     */
+    public function get_related_item_ids($shop_id, $item_id)
+    {
+        return $this->client->call("eleme.product.item.getRelatedItemIds", array("shopId" => $shop_id, "itemId" => $item_id));
+    }
+
+    /** 上传图片，返回图片的hash值
+     * @param $image 文件内容base64编码值
+     * @return mixed
+     */
+    public function upload_image($image)
+    {
+        return $this->client->call("eleme.file.uploadImage", array("image" => $image));
+    }
+
+    /** 通过远程_u_r_l上传图片，返回图片的hash值
+     * @param $url 远程Url地址
+     * @return mixed
+     */
+    public function upload_image_with_remote_url($url)
+    {
+        return $this->client->call("eleme.file.uploadImageWithRemoteUrl", array("url" => $url));
+    }
+
+    /** 获取上传文件的访问_u_r_l，返回文件的_url地址
+     * @param $hash 图片hash值
+     * @return mixed
+     */
+    public function get_uploaded_url($hash)
+    {
+        return $this->client->call("eleme.file.getUploadedUrl", array("hash" => $hash));
+    }
+
+    /** 获取上传图片的url地址(新版)
+     * @param $hash 图片hash值
+     * @return mixed
+     */
+    public function get_image_url($hash)
+    {
+        return $this->client->call("eleme.file.getImageUrl", array("hash" => $hash));
     }
 
 }
