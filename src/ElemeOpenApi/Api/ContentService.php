@@ -28,6 +28,28 @@ class ContentService extends RpcService
         return $this->client->call("eleme.content.getEfsConfig", array("videoType" => $video_type));
     }
 
+    /** 建立视频与相对应的业务的关联关系
+     * @param $video_id 视频Id
+     * @param $biz_id 业务Id
+     * @param $bind_biz_type 业务类型
+     * @return mixed
+     */
+    public function set_video_bind_relation($video_id, $biz_id, $bind_biz_type)
+    {
+        return $this->client->call("eleme.content.setVideoBindRelation", array("videoId" => $video_id, "bizId" => $biz_id, "bindBizType" => $bind_biz_type));
+    }
+
+    /** 取消视频与对应业务的关联关系
+     * @param $video_id 视频Id
+     * @param $biz_id 业务Id
+     * @param $bind_biz_type 业务类型
+     * @return mixed
+     */
+    public function unset_video_bind_relation($video_id, $biz_id, $bind_biz_type)
+    {
+        return $this->client->call("eleme.content.unsetVideoBindRelation", array("videoId" => $video_id, "bizId" => $biz_id, "bindBizType" => $bind_biz_type));
+    }
+
     /** 通过视频id查询视频信息
      * @param $video_id 视频Id
      * @return mixed

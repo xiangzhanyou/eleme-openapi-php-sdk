@@ -158,6 +158,67 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.category.setCategoryType", array("shopId" => $shop_id, "categoryId" => $category_id, "categoryType" => $category_type));
     }
 
+    /** 设置分组分时段置顶
+     * @param $shop_id 店铺Id
+     * @param $category_id 商品分类Id
+     * @param $day_parting_stick 置顶时间设置
+     * @return mixed
+     */
+    public function set_day_parting_stick_time($shop_id, $category_id, $day_parting_stick)
+    {
+        return $this->client->call("eleme.product.category.setDayPartingStickTime", array("shopId" => $shop_id, "categoryId" => $category_id, "dayPartingStick" => $day_parting_stick));
+    }
+
+    /** 删除分组的分时置顶功能
+     * @param $shop_id 店铺Id
+     * @param $category_id 商品分类Id
+     * @return mixed
+     */
+    public function remove_day_parting_stick_time($shop_id, $category_id)
+    {
+        return $this->client->call("eleme.product.category.removeDayPartingStickTime", array("shopId" => $shop_id, "categoryId" => $category_id));
+    }
+
+    /** 添加套餐
+     * @param $category_id 分类Id
+     * @param $o_package 套餐属性
+     * @return mixed
+     */
+    public function create_package($category_id, $o_package)
+    {
+        return $this->client->call("eleme.product.package.createPackage", array("categoryId" => $category_id, "oPackage" => $o_package));
+    }
+
+    /** 修改套餐基本信息
+     * @param $item_id 新套餐id即OItem中的商品Id
+     * @param $category_id 分类Id即OCategory中的分类Id
+     * @param $update 套餐基本信息
+     * @return mixed
+     */
+    public function update_package_content($item_id, $category_id, $update)
+    {
+        return $this->client->call("eleme.product.package.updatePackageContent", array("itemId" => $item_id, "categoryId" => $category_id, "update" => $update));
+    }
+
+    /** 修改套餐和主料的关联关系
+     * @param $item_id 新套餐id即OItem中的商品Id
+     * @param $packages 套餐关系
+     * @return mixed
+     */
+    public function update_package_relation($item_id, $packages)
+    {
+        return $this->client->call("eleme.product.package.updatePackageRelation", array("itemId" => $item_id, "packages" => $packages));
+    }
+
+    /** 删除套餐
+     * @param $item_id 套餐Id
+     * @return mixed
+     */
+    public function remove_package($item_id)
+    {
+        return $this->client->call("eleme.product.package.removePackage", array("itemId" => $item_id));
+    }
+
     /** 获取一个分类下的所有商品
      * @param $category_id 商品分类Id
      * @return mixed
@@ -409,6 +470,27 @@ class ProductService extends RpcService
     public function get_material_tree($shop_id)
     {
         return $this->client->call("eleme.product.item.getMaterialTree", array("shopId" => $shop_id));
+    }
+
+    /** 主料关联配料
+     * @param $shop_id 店铺ID
+     * @param $main_item_id 主料ID（商品ID）
+     * @param $ingredient_group  商品配料分组
+     * @return mixed
+     */
+    public function set_ingredient($shop_id, $main_item_id, $ingredient_group)
+    {
+        return $this->client->call("eleme.product.item.setIngredient", array("shopId" => $shop_id, "mainItemId" => $main_item_id, "ingredientGroup" => $ingredient_group));
+    }
+
+    /** 删除配料
+     * @param $shop_id 店铺ID
+     * @param $main_item_id 主料ID（商品ID）
+     * @return mixed
+     */
+    public function remove_ingredient($shop_id, $main_item_id)
+    {
+        return $this->client->call("eleme.product.item.removeIngredient", array("shopId" => $shop_id, "mainItemId" => $main_item_id));
     }
 
     /** 针对主菜item_id设置菜品推荐

@@ -112,6 +112,14 @@
 
 ## CHANGELOG:
 
+### [1.29.0]
+
+    Release Date : 2018-07-06
+
+- [Feature] 更新了视频服务
+- [Feature] 更新了商品服务
+- [Feature] 上传视频接口封装
+
 ### [1.28.0]
 
     Release Date : 2018-06-28
