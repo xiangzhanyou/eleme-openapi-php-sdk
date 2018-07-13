@@ -232,4 +232,55 @@ class UgcService extends RpcService
         return $this->client->call("eleme.ugc.getRecommendCouponByShopId", array("shopId" => $shop_id));
     }
 
+    /** 查询评价信息
+     * @param $rate_query 评价查询参数
+     * @return mixed
+     */
+    public function get_o_rate_result($rate_query)
+    {
+        return $this->client->call("eleme.ugc.getORateResult", array("rateQuery" => $rate_query));
+    }
+
+    /** 统计评价信息数量
+     * @param $rate_query 评价查询参数
+     * @return mixed
+     */
+    public function count_o_rate_result($rate_query)
+    {
+        return $this->client->call("eleme.ugc.countORateResult", array("rateQuery" => $rate_query));
+    }
+
+    /** 通过rate_ids和shop_id 回复百度外卖评论
+     * @param $rate_ids  评论编号(订单维度)
+     * @param $shop_id  饿了么侧餐厅id
+     * @param $reply 回复的内容
+     * @return mixed
+     */
+    public function reply_baidu_rate($rate_ids, $shop_id, $reply)
+    {
+        return $this->client->call("eleme.ugc.replyBaiduRate", array("rateIds" => $rate_ids, "shopId" => $shop_id, "reply" => $reply));
+    }
+
+    /** 根据rate_id和shop_id 赠送代金券给该百度评价对应订单的评价用户
+     * @param $rate_id  评论编号(订单维度)
+     * @param $shop_id  餐厅id
+     * @param $coupon 需要赠送的代金券信息
+     * @return mixed
+     */
+    public function send_baidu_coupon($rate_id, $shop_id, $coupon)
+    {
+        return $this->client->call("eleme.ugc.sendBaiduCoupon", array("rateId" => $rate_id, "shopId" => $shop_id, "coupon" => $coupon));
+    }
+
+    /** 根据rate_id和shop_id获取该订单评价用户的可赠券状态
+     * @param $rate_id  评论编号(订单维度)
+     * @param $shop_id  餐厅id
+     * @param $rate_data_type 评价数据类型
+     * @return mixed
+     */
+    public function get_rate_coupon_status($rate_id, $shop_id, $rate_data_type)
+    {
+        return $this->client->call("eleme.ugc.getRateCouponStatus", array("rateId" => $rate_id, "shopId" => $shop_id, "rateDataType" => $rate_data_type));
+    }
+
 }

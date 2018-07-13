@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [1.30.0]
+
+    Release Date : 2018-07-13
+
+- [Feature] 更新了订单评论服务
+
+
 ### [1.29.0]
 
     Release Date : 2018-07-06
