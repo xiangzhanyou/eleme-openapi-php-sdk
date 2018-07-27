@@ -97,6 +97,16 @@ class ShopService extends RpcService
         return $this->client->call("eleme.shop.getBusyLevelSetting", array("shopId" => $shop_id));
     }
 
+    /** 设置品牌排序权重
+     * @param $shop_id 店铺Id
+     * @param $weight 权重值(取值范围[0~10])
+     * @return mixed
+     */
+    public function set_brand_rank_weight($shop_id, $weight)
+    {
+        return $this->client->call("eleme.shop.setBrandRankWeight", array("shopId" => $shop_id, "weight" => $weight));
+    }
+
     /** 提交开店申请接口
      * @param $open_store_message 开店申请表单
      * @return mixed

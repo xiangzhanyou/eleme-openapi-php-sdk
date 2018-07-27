@@ -365,6 +365,26 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.mgetUserSimpleInfoByOrderIds", array("orderIds" => $order_ids));
     }
 
+    /** 商家部分退款
+     * @param $order_id 订单id
+     * @param $refund_order_message 退款详情
+     * @return mixed
+     */
+    public function refund_part($order_id, $refund_order_message)
+    {
+        return $this->client->call("eleme.order.refundPart", array("orderId" => $order_id, "refundOrderMessage" => $refund_order_message));
+    }
+
+    /** 设置订单开票地址
+     * @param $order_id 订单id
+     * @param $invoice_url 开票地址
+     * @return mixed
+     */
+    public function set_invoice_url($order_id, $invoice_url)
+    {
+        return $this->client->call("eleme.order.setInvoiceUrl", array("orderId" => $order_id, "invoiceUrl" => $invoice_url));
+    }
+
     /** 获取订单配送轨迹
      * @param $order_id 订单Id
      * @return mixed
