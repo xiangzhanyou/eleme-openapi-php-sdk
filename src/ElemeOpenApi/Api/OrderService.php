@@ -101,7 +101,7 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.noMoreDeliveryLite", array("orderId" => $order_id));
     }
 
-    /** 订单确认送达(推荐)
+    /** 订单确认送达
      * @param $order_id 订单ID
      * @return mixed
      */

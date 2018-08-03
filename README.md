@@ -112,6 +112,15 @@
 
 ## CHANGELOG:
 
+### [1.32.0]
+
+    Release Date : 2018-08-03
+
+- [Feature] 新增了商户会员卡服务
+- [Feature] 新增了CPC竞价服务
+- [Feature] 更新了订单服务
+
+
 ### [1.31.0]
 
     Release Date : 2018-07-27
