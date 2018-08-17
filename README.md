@@ -112,6 +112,14 @@
 
 ## CHANGELOG:
 
+### [1.33.0]
+
+    Release Date : 2018-08-17
+
+- [Feature] 更新了活动服务
+- [Feature] 更新了商户会员卡服务
+
+
 ### [1.32.0]
 
     Release Date : 2018-08-03

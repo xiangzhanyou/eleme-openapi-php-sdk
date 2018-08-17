@@ -268,4 +268,37 @@ class ActivityService extends RpcService
         return $this->client->call("eleme.activity.coupon.queryTargetCouponInfo", array("targetCouponQueryRequest" => $target_coupon_query_request));
     }
 
+    /** 定向赠通用商品券
+     * @param $chain_id 连锁店id
+     * @param $target_list 目标列表
+     * @param $target_list_type 目标类型
+     * @param $common_target_sku_coupon_detail 通用定向赠连锁商品券模板细节
+     * @return mixed
+     */
+    public function present_common_target_sku_coupons($chain_id, $target_list, $target_list_type, $common_target_sku_coupon_detail)
+    {
+        return $this->client->call("eleme.activity.coupon.presentCommonTargetSkuCoupons", array("chainId" => $chain_id, "targetList" => $target_list, "targetListType" => $target_list_type, "commonTargetSkuCouponDetail" => $common_target_sku_coupon_detail));
+    }
+
+    /** 定向赠指定商品券
+     * @param $target_list 目标列表
+     * @param $target_list_type 目标类型
+     * @param $sku_coupon_detail 商品券模板细节
+     * @return mixed
+     */
+    public function present_sku_coupons($target_list, $target_list_type, $sku_coupon_detail)
+    {
+        return $this->client->call("eleme.activity.coupon.presentSkuCoupons", array("targetList" => $target_list, "targetListType" => $target_list_type, "skuCouponDetail" => $sku_coupon_detail));
+    }
+
+    /** 券状态变更
+     * @param $criteria 券状态修改对象
+     * @param $type 操作类型
+     * @return mixed
+     */
+    public function update_coupon_status($criteria, $type)
+    {
+        return $this->client->call("eleme.activity.coupon.updateCouponStatus", array("criteria" => $criteria, "type" => $type));
+    }
+
 }

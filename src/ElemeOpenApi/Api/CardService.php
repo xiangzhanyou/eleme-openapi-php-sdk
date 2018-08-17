@@ -54,7 +54,7 @@ class CardService extends RpcService
         return $this->client->call("eleme.card.mgetShopIdsByTemplateIds", array("templateId" => $template_id));
     }
 
-    /** 将会员模板应用于店铺
+    /** 应用模板
      * @param $template_id 模板id
      * @param $shop_ids 店铺列表
      * @return mixed
