@@ -107,6 +107,15 @@ class ShopService extends RpcService
         return $this->client->call("eleme.shop.setBrandRankWeight", array("shopId" => $shop_id, "weight" => $weight));
     }
 
+    /** 获取店铺可补贴配送费的标品及补贴上限
+     * @param $shop_id 店铺 id 
+     * @return mixed
+     */
+    public function get_product_subsidy_limit($shop_id)
+    {
+        return $this->client->call("eleme.shop.getProductSubsidyLimit", array("shopId" => $shop_id));
+    }
+
     /** 提交开店申请接口
      * @param $open_store_message 开店申请表单
      * @return mixed

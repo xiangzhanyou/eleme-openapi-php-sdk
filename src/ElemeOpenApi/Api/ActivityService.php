@@ -72,6 +72,27 @@ class ActivityService extends RpcService
         return $this->client->call("eleme.activity.flash.invalidShopActivity", array("activityId" => $activity_id, "shopId" => $shop_id));
     }
 
+    /** 创建减配送费活动
+     * @param $create_info 创建减配送费活动的结构体
+     * @param $shop_id 店铺Id
+     * @return mixed
+     */
+    public function create_shipping_fee_activity($create_info, $shop_id)
+    {
+        return $this->client->call("eleme.activity.shippingFee.createShippingFeeActivity", array("createInfo" => $create_info, "shopId" => $shop_id));
+    }
+
+    /** 作废减配送费活动
+     * @param $activity_id 活动Id
+     * @param $shop_id 店铺Id
+     * @param $comment 作废原因
+     * @return mixed
+     */
+    public function invalid_shipping_fee_activity($activity_id, $shop_id, $comment)
+    {
+        return $this->client->call("eleme.activity.shippingFee.invalidShippingFeeActivity", array("activityId" => $activity_id, "shopId" => $shop_id, "comment" => $comment));
+    }
+
     /** 通过店铺_id查询该店铺被邀约的美食活动
      * @param $shop_id 店铺Id
      * @return mixed

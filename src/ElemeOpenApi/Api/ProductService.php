@@ -381,6 +381,25 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.item.updateMultiSpecItem", array("itemId" => $item_id, "categoryId" => $category_id, "properties" => $properties));
     }
 
+    /** 设置配料组数据
+     * @param $item_id 商品Id
+     * @param $group_relations 配料组信息
+     * @return mixed
+     */
+    public function set_ingredient_group($item_id, $group_relations)
+    {
+        return $this->client->call("eleme.product.item.setIngredientGroup", array("itemId" => $item_id, "groupRelations" => $group_relations));
+    }
+
+    /** 删除配料组数据
+     * @param $item_id 商品Id
+     * @return mixed
+     */
+    public function remove_ingredient_group($item_id)
+    {
+        return $this->client->call("eleme.product.item.removeIngredientGroup", array("itemId" => $item_id));
+    }
+
     /** 查询店铺商品分类
      * @param $shop_id 店铺Id
      * @return mixed
