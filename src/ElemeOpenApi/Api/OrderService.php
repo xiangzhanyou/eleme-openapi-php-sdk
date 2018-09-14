@@ -385,6 +385,27 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.setInvoiceUrl", array("orderId" => $order_id, "invoiceUrl" => $invoice_url));
     }
 
+    /** 自配送商家同步运单的状态信息
+     * @param $shop_id 店铺id
+     * @param $state_info 运单状态信息
+     * @return mixed
+     */
+    public function self_delivery_state_sync($shop_id, $state_info)
+    {
+        return $this->client->call("eleme.order.selfDeliveryStateSync", array("shopId" => $shop_id, "stateInfo" => $state_info));
+    }
+
+    /** 自配送商家同步运单的位置信息
+     * @param $shop_id 店铺id
+     * @param $order_id 订单id
+     * @param $location_info 位置信息,仅接受火星坐标系
+     * @return mixed
+     */
+    public function self_delivery_location_sync($shop_id, $order_id, $location_info)
+    {
+        return $this->client->call("eleme.order.selfDeliveryLocationSync", array("shopId" => $shop_id, "orderId" => $order_id, "locationInfo" => $location_info));
+    }
+
     /** 获取订单配送轨迹
      * @param $order_id 订单Id
      * @return mixed
