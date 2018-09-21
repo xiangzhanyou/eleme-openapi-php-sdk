@@ -112,6 +112,15 @@
 
 ## CHANGELOG:
 
+### [1.36.0]
+
+    Release Date : 2018-09-21
+
+- [Feature] 更新了商户会员卡服务
+- [Feature] 更新了门店装修服务
+- [Feature] 新增了短信服务
+
+
 ### [1.35.0]
 
     Release Date : 2018-09-14

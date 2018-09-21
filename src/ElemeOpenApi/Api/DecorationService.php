@@ -8,62 +8,8 @@ namespace ElemeOpenApi\Api;
 class DecorationService extends RpcService
 {
 
-    /** 连锁店总店创建橱窗
-     * @param $window 新增的橱窗信息和其关联连锁店子店I和子店商品
-     * @return mixed
-     */
-    public function create_window($window)
-    {
-        return $this->client->call("eleme.decoration.windows.createWindow", array("window" => $window));
-    }
-
-    /** 连锁店总店修改橱窗
-     * @param $window 修改的橱窗信息和其关联连锁店子店ID和子店商品
-     * @return mixed
-     */
-    public function update_window($window)
-    {
-        return $this->client->call("eleme.decoration.windows.updateWindow", array("window" => $window));
-    }
-
-    /** 连锁店总店删除橱窗
-     * @param $window 删除橱窗信息
-     * @return mixed
-     */
-    public function delete_window($window)
-    {
-        return $this->client->call("eleme.decoration.windows.deleteWindow", array("window" => $window));
-    }
-
-    /** 连锁店总店对多个橱窗进行排序
-     * @param $window 橱窗排序信息
-     * @return mixed
-     */
-    public function order_window($window)
-    {
-        return $this->client->call("eleme.decoration.windows.orderWindow", array("window" => $window));
-    }
-
-    /** 连锁店总店根据橱窗_i_d获取橱窗详情
-     * @param $burst_window_id 橱窗ID
-     * @return mixed
-     */
-    public function get_window_by_id($burst_window_id)
-    {
-        return $this->client->call("eleme.decoration.windows.getWindowById", array("burstWindowId" => $burst_window_id));
-    }
-
-    /** 连锁店总店获取橱窗信息集合
-     * @param $operate_shop_id 连锁店总店ID
-     * @return mixed
-     */
-    public function get_window_by_shop_id($operate_shop_id)
-    {
-        return $this->client->call("eleme.decoration.windows.getWindowByShopId", array("operateShopId" => $operate_shop_id));
-    }
-
-    /** 连锁店总店创建招贴
-     * @param $sign 招贴信息和其关联连锁店子店ID
+    /** 创建招贴
+     * @param $sign 招贴信息和其关联门店ID集合
      * @return mixed
      */
     public function create_sign($sign)
@@ -71,9 +17,9 @@ class DecorationService extends RpcService
         return $this->client->call("eleme.decoration.sign.createSign", array("sign" => $sign));
     }
 
-    /** 连锁店总店修改招贴
+    /** 修改招贴
      * @param $sign_id 招贴ID
-     * @param $sign 招贴信息和其关联连锁店子店ID
+     * @param $sign 招贴信息和其关联门店ID
      * @return mixed
      */
     public function update_sign($sign_id, $sign)
@@ -81,17 +27,16 @@ class DecorationService extends RpcService
         return $this->client->call("eleme.decoration.sign.updateSign", array("signId" => $sign_id, "sign" => $sign));
     }
 
-    /** 连锁店总店作废招贴
+    /** 作废招贴
      * @param $sign_id 招贴ID
-     * @param $operate_shop_id 连锁店总店ID
      * @return mixed
      */
-    public function invalid_sign($sign_id, $operate_shop_id)
+    public function invalid_sign($sign_id)
     {
-        return $this->client->call("eleme.decoration.sign.invalidSign", array("signId" => $sign_id, "operateShopId" => $operate_shop_id));
+        return $this->client->call("eleme.decoration.sign.invalidSign", array("signId" => $sign_id));
     }
 
-    /** 连锁店总店获取历史上传过的招贴图片
+    /** 获取历史上传过的招贴图片
      * @param $sign 查询条件
      * @return mixed
      */
@@ -100,16 +45,16 @@ class DecorationService extends RpcService
         return $this->client->call("eleme.decoration.sign.getSignHistoryImage", array("sign" => $sign));
     }
 
-    /** 连锁店总店分页查询店铺招贴
-     * @param $sign 查询条件
+    /** 查询有效招贴集合
+    
      * @return mixed
      */
-    public function query_sign($sign)
+    public function query_sign()
     {
-        return $this->client->call("eleme.decoration.sign.querySign", array("sign" => $sign));
+        return $this->client->call("eleme.decoration.sign.querySign", array());
     }
 
-    /** 连锁店总店根据招贴_i_d查询店铺招贴详情
+    /** 根据招贴_i_d查询店铺招贴详情
      * @param $sign_id 招贴ID
      * @return mixed
      */
@@ -118,63 +63,7 @@ class DecorationService extends RpcService
         return $this->client->call("eleme.decoration.sign.getSignById", array("signId" => $sign_id));
     }
 
-    /** 连锁店总店创建海报接口
-     * @param $poster 海报信息和其关联连锁店子店I和子店商品
-     * @return mixed
-     */
-    public function create_poster($poster)
-    {
-        return $this->client->call("eleme.decoration.poster.createPoster", array("poster" => $poster));
-    }
-
-    /** 连锁店总店修改海报
-     * @param $poster_id 海报ID
-     * @param $poster 海报信息和其关联连锁店子店ID和子店商品
-     * @return mixed
-     */
-    public function update_poster($poster_id, $poster)
-    {
-        return $this->client->call("eleme.decoration.poster.updatePoster", array("posterId" => $poster_id, "poster" => $poster));
-    }
-
-    /** 连锁店总店作废海报
-     * @param $poster 作废海报信息
-     * @return mixed
-     */
-    public function invalid_poster($poster)
-    {
-        return $this->client->call("eleme.decoration.poster.invalidPoster", array("poster" => $poster));
-    }
-
-    /** 连锁店总店根据海报_i_d获取海报详情
-     * @param $poster_id 海报ID
-     * @param $operate_shop_id 连锁店总店ID
-     * @return mixed
-     */
-    public function get_poster_detail_by_id($poster_id, $operate_shop_id)
-    {
-        return $this->client->call("eleme.decoration.poster.getPosterDetailById", array("posterId" => $poster_id, "operateShopId" => $operate_shop_id));
-    }
-
-    /** 连锁店总店根据条件查询海报信息集合
-     * @param $poster 查询海报条件参数
-     * @return mixed
-     */
-    public function query_poster($poster)
-    {
-        return $this->client->call("eleme.decoration.poster.queryPoster", array("poster" => $poster));
-    }
-
-    /** 连锁店总店获取历史上传过的海报图片
-     * @param $operate_shop_id 连锁店总店ID
-     * @return mixed
-     */
-    public function get_poster_history_image($operate_shop_id)
-    {
-        return $this->client->call("eleme.decoration.poster.getPosterHistoryImage", array("operateShopId" => $operate_shop_id));
-    }
-
-    /** 连锁店总店新增品牌故事
+    /** 新增品牌故事
      * @param $story 品牌故事信息和其关联连锁店子店ID
      * @return mixed
      */
@@ -183,7 +72,7 @@ class DecorationService extends RpcService
         return $this->client->call("eleme.decoration.story.createBrandStory", array("story" => $story));
     }
 
-    /** 连锁店总店更新品牌故事
+    /** 更新品牌故事
      * @param $brand_story_id 品牌故事ID
      * @param $story 品牌故事信息和其关联连锁店子店ID
      * @return mixed
@@ -193,23 +82,203 @@ class DecorationService extends RpcService
         return $this->client->call("eleme.decoration.story.updateBrandStory", array("brandStoryId" => $brand_story_id, "story" => $story));
     }
 
-    /** 连锁店总店删除品牌故事
+    /** 删除品牌故事
      * @param $brand_story_id 品牌故事ID
-     * @param $operate_shop_id 连锁店总店店铺ID
      * @return mixed
      */
-    public function delete_brand_story($brand_story_id, $operate_shop_id)
+    public function delete_brand_story($brand_story_id)
     {
-        return $this->client->call("eleme.decoration.story.deleteBrandStory", array("brandStoryId" => $brand_story_id, "operateShopId" => $operate_shop_id));
+        return $this->client->call("eleme.decoration.story.deleteBrandStory", array("brandStoryId" => $brand_story_id));
     }
 
-    /** 连锁店总店查询当前设置的品牌故事信息
+    /** 查询品牌故事列表
+    
+     * @return mixed
+     */
+    public function query_brand_story_list()
+    {
+        return $this->client->call("eleme.decoration.story.queryBrandStoryList", array());
+    }
+
+    /** 查询当前设置的品牌故事信息
      * @param $brand_story_id 品牌故事ID
      * @return mixed
      */
     public function get_brand_story_by_id($brand_story_id)
     {
         return $this->client->call("eleme.decoration.story.getBrandStoryById", array("brandStoryId" => $brand_story_id));
+    }
+
+    /** 保存精准分类
+     * @param $category 精准分类信息
+     * @return mixed
+     */
+    public function save_category($category)
+    {
+        return $this->client->call("eleme.decoration.accurateCategory.saveCategory", array("category" => $category));
+    }
+
+    /** 根据门店_i_d获取精准分类
+     * @param $category 查询参数
+     * @return mixed
+     */
+    public function get_accurate_category($category)
+    {
+        return $this->client->call("eleme.decoration.accurateCategory.getAccurateCategory", array("category" => $category));
+    }
+
+    /** 查询精准分类
+     * @param $category 查询参数
+     * @return mixed
+     */
+    public function query_accurate_category_list($category)
+    {
+        return $this->client->call("eleme.decoration.accurateCategory.queryAccurateCategoryList", array("category" => $category));
+    }
+
+    /** 创建多橱窗
+     * @param $window 新增的橱窗信息和其关联门店ID和关联商品
+     * @return mixed
+     */
+    public function create_window($window)
+    {
+        return $this->client->call("eleme.decoration.windows.createWindow", array("window" => $window));
+    }
+
+    /** 修改橱窗
+     * @param $window 修改的橱窗信息和其关联门店ID和门店商品
+     * @return mixed
+     */
+    public function update_window($window)
+    {
+        return $this->client->call("eleme.decoration.windows.updateWindow", array("window" => $window));
+    }
+
+    /** 删除橱窗
+     * @param $window 删除橱窗信息
+     * @return mixed
+     */
+    public function delete_window($window)
+    {
+        return $this->client->call("eleme.decoration.windows.deleteWindow", array("window" => $window));
+    }
+
+    /** 对多个橱窗进行排序
+     * @param $window 橱窗排序信息
+     * @return mixed
+     */
+    public function order_window($window)
+    {
+        return $this->client->call("eleme.decoration.windows.orderWindow", array("window" => $window));
+    }
+
+    /** 根据橱窗_i_d获取橱窗详情
+     * @param $burst_window_id 橱窗ID
+     * @return mixed
+     */
+    public function get_window_by_id($burst_window_id)
+    {
+        return $this->client->call("eleme.decoration.windows.getWindowById", array("burstWindowId" => $burst_window_id));
+    }
+
+    /** 获取可见的橱窗信息集合
+    
+     * @return mixed
+     */
+    public function get_windows()
+    {
+        return $this->client->call("eleme.decoration.windows.getWindows", array());
+    }
+
+    /** 创建海报
+     * @param $poster 海报信息和其关联门店ID和门店商品
+     * @return mixed
+     */
+    public function create_poster($poster)
+    {
+        return $this->client->call("eleme.decoration.poster.createPoster", array("poster" => $poster));
+    }
+
+    /** 修改海报
+     * @param $poster_id 海报ID
+     * @param $poster 海报信息和其关联门店ID和门店商品
+     * @return mixed
+     */
+    public function update_poster($poster_id, $poster)
+    {
+        return $this->client->call("eleme.decoration.poster.updatePoster", array("posterId" => $poster_id, "poster" => $poster));
+    }
+
+    /** 作废海报
+     * @param $poster 作废海报信息
+     * @return mixed
+     */
+    public function invalid_poster($poster)
+    {
+        return $this->client->call("eleme.decoration.poster.invalidPoster", array("poster" => $poster));
+    }
+
+    /** 根据海报_i_d获取海报详情
+     * @param $poster_id 海报ID
+     * @return mixed
+     */
+    public function get_poster_detail_by_id($poster_id)
+    {
+        return $this->client->call("eleme.decoration.poster.getPosterDetailById", array("posterId" => $poster_id));
+    }
+
+    /** 查询有效的海报信息集合
+    
+     * @return mixed
+     */
+    public function query_effective_posters()
+    {
+        return $this->client->call("eleme.decoration.poster.queryEffectivePosters", array());
+    }
+
+    /** 获取历史上传过的海报图片
+    
+     * @return mixed
+     */
+    public function get_poster_history_image()
+    {
+        return $this->client->call("eleme.decoration.poster.getPosterHistoryImage", array());
+    }
+
+    /** 保存爆款橱窗
+     * @param $burst_window 爆款橱窗信息
+     * @return mixed
+     */
+    public function save_burst_window($burst_window)
+    {
+        return $this->client->call("eleme.decoration.burstWindow.saveBurstWindow", array("burstWindow" => $burst_window));
+    }
+
+    /** 根据门店_i_d关闭店铺爆款橱窗
+     * @param $shop_id 门店ID
+     * @return mixed
+     */
+    public function close_burst_window_by_shop_id($shop_id)
+    {
+        return $this->client->call("eleme.decoration.burstWindow.closeBurstWindowByShopId", array("shopId" => $shop_id));
+    }
+
+    /** 根据店铺_i_d查询该店铺的爆款橱窗信息
+     * @param $shop_id 店铺ID
+     * @return mixed
+     */
+    public function get_burst_window_by_shop_id($shop_id)
+    {
+        return $this->client->call("eleme.decoration.burstWindow.getBurstWindowByShopId", array("shopId" => $shop_id));
+    }
+
+    /** 根据门店_i_d集合查询店铺爆款橱窗信息集合
+     * @param $shop_ids 查询条件
+     * @return mixed
+     */
+    public function query_burst_window_list($shop_ids)
+    {
+        return $this->client->call("eleme.decoration.burstWindow.queryBurstWindowList", array("shopIds" => $shop_ids));
     }
 
     /** 上传图片
