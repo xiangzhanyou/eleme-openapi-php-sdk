@@ -78,7 +78,7 @@ class ShopService extends RpcService
     }
 
     /** 更新店铺营业时间预设置
-     * @param $shop_id 店铺 id 
+     * @param $shop_id 店铺id
      * @param $week_setting 一周营业时间预设置, 参考 OShopBusyLevelSetting weekSetting 字段定义 
      * @param $date_setting 特定日期营业时间预设置, 参考 OShopBusyLevelSetting dateSetting 字段定义 
      * @return mixed
@@ -89,7 +89,7 @@ class ShopService extends RpcService
     }
 
     /** 获取店铺营业时间预设置
-     * @param $shop_id 店铺 id 
+     * @param $shop_id 店铺id
      * @return mixed
      */
     public function get_busy_level_setting($shop_id)

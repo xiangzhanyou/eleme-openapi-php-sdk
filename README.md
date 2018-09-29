@@ -112,6 +112,14 @@
 
 ## CHANGELOG:
 
+### [1.37.0]
+
+    Release Date : 2018-09-29
+
+- [Feature] 新增了商户数据服务
+- [Feature] 更新了店铺服务
+
+
 ### [1.36.0]
 
     Release Date : 2018-09-21
