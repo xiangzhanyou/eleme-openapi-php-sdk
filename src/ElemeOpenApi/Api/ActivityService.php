@@ -322,4 +322,27 @@ class ActivityService extends RpcService
         return $this->client->call("eleme.activity.coupon.updateCouponStatus", array("criteria" => $criteria, "type" => $type));
     }
 
+    /** 创建并绑定连锁店特价活动
+     * @param $activity 活动创建信息
+     * @param $chain_id 连锁店Id
+     * @param $shop_apply_info  绑定的商品信息
+     * @return mixed
+     */
+    public function create_and_participate_chain_price_activity($activity, $chain_id, $shop_apply_info)
+    {
+        return $this->client->call("eleme.activity.skuchain.createAndParticipateChainPriceActivity", array("activity" => $activity, "chainId" => $chain_id, "shopApplyInfo" => $shop_apply_info));
+    }
+
+    /** 根据活动_id和店铺_id和商品规格_id，作废参与关系
+     * @param $activity_id 活动Id
+     * @param $shop_id 店铺Id
+     * @param $spec_id 商品规格Id
+     * @param $comment 作废原因
+     * @return mixed
+     */
+    public function in_valid_sku_activity_by_id($activity_id, $shop_id, $spec_id, $comment)
+    {
+        return $this->client->call("eleme.activity.skuchain.inValidSkuActivityById", array("activityId" => $activity_id, "shopId" => $shop_id, "specId" => $spec_id, "comment" => $comment));
+    }
+
 }

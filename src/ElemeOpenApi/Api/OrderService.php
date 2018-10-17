@@ -8,6 +8,15 @@ namespace ElemeOpenApi\Api;
 class OrderService extends RpcService
 {
 
+    /** 获取订单配送轨迹
+     * @param $order_id 订单Id
+     * @return mixed
+     */
+    public function get_delivery_routes($order_id)
+    {
+        return $this->client->call("eleme.order.delivery.getDeliveryRoutes", array("orderId" => $order_id));
+    }
+
     /** 获取订单
      * @param $order_id 订单Id
      * @return mixed
@@ -102,7 +111,7 @@ class OrderService extends RpcService
     }
 
     /** 订单确认送达
-     * @param $order_id 订单ID
+     * @param $order_id 订单Id
      * @return mixed
      */
     public function received_order_lite($order_id)
@@ -111,7 +120,7 @@ class OrderService extends RpcService
     }
 
     /** 订单确认送出(自配送)
-     * @param $order_id 订单ID
+     * @param $order_id 订单Id
      * @param $phone 配送者电话
      * @return mixed
      */
@@ -121,7 +130,7 @@ class OrderService extends RpcService
     }
 
     /** 订单确认送达(自配送)
-     * @param $order_id 订单ID
+     * @param $order_id 订单Id
      * @param $phone 配送者电话
      * @return mixed
      */
@@ -197,7 +206,7 @@ class OrderService extends RpcService
     }
 
     /** 获取店铺未回复的催单
-     * @param $shop_id 店铺id
+     * @param $shop_id 店铺Id
      * @return mixed
      */
     public function get_unreply_reminders($shop_id)
@@ -206,7 +215,7 @@ class OrderService extends RpcService
     }
 
     /** 查询店铺未处理订单
-     * @param $shop_id 店铺id
+     * @param $shop_id 店铺Id
      * @return mixed
      */
     public function get_unprocess_orders($shop_id)
@@ -215,7 +224,7 @@ class OrderService extends RpcService
     }
 
     /** 查询店铺未处理的取消单
-     * @param $shop_id 店铺id
+     * @param $shop_id 店铺Id
      * @return mixed
      */
     public function get_cancel_orders($shop_id)
@@ -224,7 +233,7 @@ class OrderService extends RpcService
     }
 
     /** 查询店铺未处理的退单
-     * @param $shop_id 店铺id
+     * @param $shop_id 店铺Id
      * @return mixed
      */
     public function get_refund_orders($shop_id)
@@ -233,7 +242,7 @@ class OrderService extends RpcService
     }
 
     /** 查询全部订单
-     * @param $shop_id 店铺id
+     * @param $shop_id 店铺Id
      * @param $page_no 页码。取值范围:大于零的整数最大限制为100
      * @param $page_size 每页获取条数。最小值1，最大值50。
      * @param $date 日期,默认当天,格式:yyyy-MM-dd
@@ -357,7 +366,7 @@ class OrderService extends RpcService
     }
 
     /** 查询顾客联系方式
-     * @param $order_ids 订单ID的列表
+     * @param $order_ids 订单Id的列表
      * @return mixed
      */
     public function mget_user_simple_info_by_order_ids($order_ids)
@@ -366,7 +375,7 @@ class OrderService extends RpcService
     }
 
     /** 商家部分退款
-     * @param $order_id 订单id
+     * @param $order_id 订单Id
      * @param $refund_order_message 退款详情
      * @return mixed
      */
@@ -376,7 +385,7 @@ class OrderService extends RpcService
     }
 
     /** 设置订单开票地址
-     * @param $order_id 订单id
+     * @param $order_id 订单Id
      * @param $invoice_url 开票地址
      * @return mixed
      */
@@ -386,7 +395,7 @@ class OrderService extends RpcService
     }
 
     /** 自配送商家同步运单的状态信息
-     * @param $shop_id 店铺id
+     * @param $shop_id 店铺Id
      * @param $state_info 运单状态信息
      * @return mixed
      */
@@ -396,8 +405,8 @@ class OrderService extends RpcService
     }
 
     /** 自配送商家同步运单的位置信息
-     * @param $shop_id 店铺id
-     * @param $order_id 订单id
+     * @param $shop_id 店铺Id
+     * @param $order_id 订单Id
      * @param $location_info 位置信息,仅接受火星坐标系
      * @return mixed
      */
@@ -406,13 +415,34 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.selfDeliveryLocationSync", array("shopId" => $shop_id, "orderId" => $order_id, "locationInfo" => $location_info));
     }
 
-    /** 获取订单配送轨迹
+    /** 订单预计出餐时间
      * @param $order_id 订单Id
+     * @param $predict_time 预计订单出餐时间
      * @return mixed
      */
-    public function get_delivery_routes($order_id)
+    public function order_predict_finish_time($order_id, $predict_time)
     {
-        return $this->client->call("eleme.order.delivery.getDeliveryRoutes", array("orderId" => $order_id));
+        return $this->client->call("eleme.order.orderPredictFinishTime", array("orderId" => $order_id, "predictTime" => $predict_time));
+    }
+
+    /** 菜品预计出餐时间
+     * @param $shop_id 店铺Id
+     * @param $commodity_info 菜品信息
+     * @return mixed
+     */
+    public function commodity_predict_finish_time($shop_id, $commodity_info)
+    {
+        return $this->client->call("eleme.order.commodityPredictFinishTime", array("shopId" => $shop_id, "commodityInfo" => $commodity_info));
+    }
+
+    /** 菜品实际出餐时间
+     * @param $shop_id 店铺Id
+     * @param $commodity_info 菜品信息
+     * @return mixed
+     */
+    public function commodity_actual_finish_time($shop_id, $commodity_info)
+    {
+        return $this->client->call("eleme.order.commodityActualFinishTime", array("shopId" => $shop_id, "commodityInfo" => $commodity_info));
     }
 
 }

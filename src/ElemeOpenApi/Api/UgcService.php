@@ -250,7 +250,7 @@ class UgcService extends RpcService
         return $this->client->call("eleme.ugc.countORateResult", array("rateQuery" => $rate_query));
     }
 
-    /** 通过rate_ids和shop_id 回复百度外卖评论
+    /** 通过rate_ids和shop_id 回复饿了么星选评论
      * @param $rate_ids  评论编号(订单维度)
      * @param $shop_id  饿了么侧餐厅id
      * @param $reply 回复的内容
@@ -261,7 +261,7 @@ class UgcService extends RpcService
         return $this->client->call("eleme.ugc.replyBaiduRate", array("rateIds" => $rate_ids, "shopId" => $shop_id, "reply" => $reply));
     }
 
-    /** 根据rate_id和shop_id 赠送代金券给该百度评价对应订单的评价用户
+    /** 根据rate_id和shop_id 赠送代金券给该饿了么星选评价对应订单的评价用户
      * @param $rate_id  评论编号(订单维度)
      * @param $shop_id  餐厅id
      * @param $coupon 需要赠送的代金券信息

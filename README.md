@@ -112,6 +112,15 @@
 
 ## CHANGELOG:
 
+### [1.38.0]
+
+    Release Date : 2018-10-17
+
+- [Feature] 更新了活动服务
+- [Feature] 更新了订单服务
+- [Feature] 更新了订单评论服务
+
+
 ### [1.37.0]
 
     Release Date : 2018-09-29
