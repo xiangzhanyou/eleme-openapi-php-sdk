@@ -112,6 +112,14 @@
 
 ## CHANGELOG:
 
+### [1.39.0]
+
+    Release Date : 2018-11-15
+
+- [Feature] 更新了活动服务
+- [Feature] 更新了店铺服务
+
+
 ### [1.38.0]
 
     Release Date : 2018-10-17

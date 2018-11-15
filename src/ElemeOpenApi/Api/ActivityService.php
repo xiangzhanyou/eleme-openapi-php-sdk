@@ -301,6 +301,18 @@ class ActivityService extends RpcService
         return $this->client->call("eleme.activity.coupon.presentCommonTargetSkuCoupons", array("chainId" => $chain_id, "targetList" => $target_list, "targetListType" => $target_list_type, "commonTargetSkuCouponDetail" => $common_target_sku_coupon_detail));
     }
 
+    /** 定向赠连锁通用商品券
+     * @param $chain_id 连锁店id
+     * @param $target_list 目标列表
+     * @param $target_list_type 目标类型
+     * @param $chain_sku_coupon_detail 通用定向赠连锁商品券模板细节
+     * @return mixed
+     */
+    public function present_chain_sku_coupons($chain_id, $target_list, $target_list_type, $chain_sku_coupon_detail)
+    {
+        return $this->client->call("eleme.activity.coupon.presentChainSkuCoupons", array("chainId" => $chain_id, "targetList" => $target_list, "targetListType" => $target_list_type, "chainSkuCouponDetail" => $chain_sku_coupon_detail));
+    }
+
     /** 定向赠指定商品券
      * @param $target_list 目标列表
      * @param $target_list_type 目标类型

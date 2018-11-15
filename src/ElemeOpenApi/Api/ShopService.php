@@ -108,12 +108,32 @@ class ShopService extends RpcService
     }
 
     /** 获取店铺可补贴配送费的标品及补贴上限
-     * @param $shop_id 店铺 id 
+     * @param $shop_id 店铺Id
      * @return mixed
      */
     public function get_product_subsidy_limit($shop_id)
     {
         return $this->client->call("eleme.shop.getProductSubsidyLimit", array("shopId" => $shop_id));
+    }
+
+    /** 设置店铺假期歇业
+     * @param $shop_id 店铺Id
+     * @param $vocation_dates  店铺休假日期
+     * @param $enabled  店铺休假是否有效
+     * @return mixed
+     */
+    public function set_shop_vocations($shop_id, $vocation_dates, $enabled)
+    {
+        return $this->client->call("eleme.shop.setShopVocations", array("shopId" => $shop_id, "vocationDates" => $vocation_dates, "enabled" => $enabled));
+    }
+
+    /** 获取店铺有效的假期歇业日期
+     * @param $shop_id 店铺Id
+     * @return mixed
+     */
+    public function get_shop_vocation($shop_id)
+    {
+        return $this->client->call("eleme.shop.getShopVocation", array("shopId" => $shop_id));
     }
 
     /** 提交开店申请接口
