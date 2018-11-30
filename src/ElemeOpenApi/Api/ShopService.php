@@ -116,6 +116,16 @@ class ShopService extends RpcService
         return $this->client->call("eleme.shop.getProductSubsidyLimit", array("shopId" => $shop_id));
     }
 
+    /** 设置店铺_t模型
+     * @param $shop_id 店铺Id
+     * @param $delivery_time 配送总时间(单位:分钟)
+     * @return mixed
+     */
+    public function set_shop_t_model($shop_id, $delivery_time)
+    {
+        return $this->client->call("eleme.shop.setShopTModel", array("shopId" => $shop_id, "deliveryTime" => $delivery_time));
+    }
+
     /** 设置店铺假期歇业
      * @param $shop_id 店铺Id
      * @param $vocation_dates  店铺休假日期

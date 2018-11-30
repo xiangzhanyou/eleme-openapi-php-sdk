@@ -43,7 +43,7 @@ class RpcClient
     {
         $protocol = array(
             "nop" => '1.0.0',
-            "id" => $this->create_uuid(),
+            "id" => $this->generate_reqId(),
             "action" => $action,
             "token" => $this->token->access_token,
             "metas" => array(
@@ -52,7 +52,7 @@ class RpcClient
             ),
             "params" => $parameters,
         );
-
+        echo json_encode($protocol);
 
 
         $protocol['signature'] = $this->generate_signature($protocol);
@@ -114,6 +114,22 @@ class RpcClient
         }
 
         return strtoupper(md5($splice));
+    }
+
+    private function generate_reqId() 
+    {
+        return strtoupper(str_replace("-", "", $this -> create_uuid())) . "|" . $this -> get_millisecond();
+    }
+
+    private function get_millisecond() 
+    {
+        list($usec, $sec) = explode(" ", microtime());
+        $msec = (string) round($usec * 1000);
+        if (strlen($msec) < 3)
+        {
+            $msec = "0" . $msec;
+        }
+        return $sec . $msec;
     }
 
     private function create_uuid()

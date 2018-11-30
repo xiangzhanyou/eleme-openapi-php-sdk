@@ -112,6 +112,14 @@
 
 ## CHANGELOG:
 
+### [1.40.0]
+
+    Release Date : 2018-11-30
+
+- [Feature] 更新了店铺服务
+- [Feature] requestId新增时间戳后缀
+
+
 ### [1.39.0]
 
     Release Date : 2018-11-15
