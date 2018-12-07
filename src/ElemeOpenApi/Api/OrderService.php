@@ -445,4 +445,13 @@ class OrderService extends RpcService
         return $this->client->call("eleme.order.commodityActualFinishTime", array("shopId" => $shop_id, "commodityInfo" => $commodity_info));
     }
 
+    /** 匿名订单查询可用虚拟小号
+     * @param $order_id 订单Id
+     * @return mixed
+     */
+    public function query_call_available($order_id)
+    {
+        return $this->client->call("eleme.order.queryCallAvailable", array("orderId" => $order_id));
+    }
+
 }
