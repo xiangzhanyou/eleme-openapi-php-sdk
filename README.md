@@ -112,6 +112,14 @@
 
 ## CHANGELOG:
 
+### [1.42.0]
+
+    Release Date : 2018-12-21
+
+- [Feature] 更新了门店装修服务
+- [Feature] 更新了订单评论服务
+
+
 ### [1.41.0]
 
     Release Date : 2018-12-07

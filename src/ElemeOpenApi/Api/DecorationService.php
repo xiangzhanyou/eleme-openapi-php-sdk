@@ -136,60 +136,6 @@ class DecorationService extends RpcService
         return $this->client->call("eleme.decoration.accurateCategory.queryAccurateCategoryList", array("category" => $category));
     }
 
-    /** 创建多橱窗
-     * @param $window 新增的橱窗信息和其关联门店ID和关联商品
-     * @return mixed
-     */
-    public function create_window($window)
-    {
-        return $this->client->call("eleme.decoration.windows.createWindow", array("window" => $window));
-    }
-
-    /** 修改橱窗
-     * @param $window 修改的橱窗信息和其关联门店ID和门店商品
-     * @return mixed
-     */
-    public function update_window($window)
-    {
-        return $this->client->call("eleme.decoration.windows.updateWindow", array("window" => $window));
-    }
-
-    /** 删除橱窗
-     * @param $window 删除橱窗信息
-     * @return mixed
-     */
-    public function delete_window($window)
-    {
-        return $this->client->call("eleme.decoration.windows.deleteWindow", array("window" => $window));
-    }
-
-    /** 对多个橱窗进行排序
-     * @param $window 橱窗排序信息
-     * @return mixed
-     */
-    public function order_window($window)
-    {
-        return $this->client->call("eleme.decoration.windows.orderWindow", array("window" => $window));
-    }
-
-    /** 根据橱窗_i_d获取橱窗详情
-     * @param $burst_window_id 橱窗ID
-     * @return mixed
-     */
-    public function get_window_by_id($burst_window_id)
-    {
-        return $this->client->call("eleme.decoration.windows.getWindowById", array("burstWindowId" => $burst_window_id));
-    }
-
-    /** 获取可见的橱窗信息集合
-    
-     * @return mixed
-     */
-    public function get_windows()
-    {
-        return $this->client->call("eleme.decoration.windows.getWindows", array());
-    }
-
     /** 创建海报
      * @param $poster 海报信息和其关联门店ID和门店商品
      * @return mixed

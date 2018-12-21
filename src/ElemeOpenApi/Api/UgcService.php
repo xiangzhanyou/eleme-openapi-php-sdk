@@ -171,7 +171,7 @@ class UgcService extends RpcService
         return $this->client->call("eleme.ugc.replyRatesByItemIds", array("itemIds" => $item_ids, "reply" => $reply, "startTime" => $start_time, "endTime" => $end_time));
     }
 
-    /** 通过rate_id和shop_id 回复指定类型的评论
+    /** 通过rate_id和shop_id 回复指定类型的评论(推荐)
      * @param $rate_id 评论编号
      * @param $shop_id  餐厅id
      * @param $reply_type 评论类型
@@ -183,7 +183,7 @@ class UgcService extends RpcService
         return $this->client->call("eleme.ugc.replyRateByRateIdAndShopId", array("rateId" => $rate_id, "shopId" => $shop_id, "replyType" => $reply_type, "reply" => $reply));
     }
 
-    /** 通过rate_ids和shop_id 批量回复指定类型的评论
+    /** 通过rate_ids和shop_id 批量回复指定类型的评论(推荐)
      * @param $rate_ids  评论编号
      * @param $shop_id  餐厅id
      * @param $reply_type 评论类型
@@ -232,7 +232,7 @@ class UgcService extends RpcService
         return $this->client->call("eleme.ugc.getRecommendCouponByShopId", array("shopId" => $shop_id));
     }
 
-    /** 查询评价信息
+    /** 查询评价信息(推荐)
      * @param $rate_query 评价查询参数
      * @return mixed
      */
@@ -272,7 +272,7 @@ class UgcService extends RpcService
         return $this->client->call("eleme.ugc.sendBaiduCoupon", array("rateId" => $rate_id, "shopId" => $shop_id, "coupon" => $coupon));
     }
 
-    /** 根据rate_id和shop_id获取该订单评价用户的可赠券状态
+    /** 根据rate_id和shop_id获取该订单评价用户的可赠券状态(推荐)
      * @param $rate_id  评论编号(订单维度)
      * @param $shop_id  餐厅id
      * @param $rate_data_type 评价数据类型
@@ -281,6 +281,24 @@ class UgcService extends RpcService
     public function get_rate_coupon_status($rate_id, $shop_id, $rate_data_type)
     {
         return $this->client->call("eleme.ugc.getRateCouponStatus", array("rateId" => $rate_id, "shopId" => $shop_id, "rateDataType" => $rate_data_type));
+    }
+
+    /** 根据评价编号赠送代金券给评价用户(推荐)
+     * @param $rating_coupon_d_t_o 赠券所需的参数
+     * @return mixed
+     */
+    public function rating_coupon($rating_coupon_d_t_o)
+    {
+        return $this->client->call("eleme.ugc.ratingCoupon", array("ratingCouponDTO" => $rating_coupon_d_t_o));
+    }
+
+    /** 获取赠券扩展信息(推荐)
+     * @param $extends_queries 评价赠券信息查询条件
+     * @return mixed
+     */
+    public function get_coupon_extends_info($extends_queries)
+    {
+        return $this->client->call("eleme.ugc.getCouponExtendsInfo", array("extendsQueries" => $extends_queries));
     }
 
 }

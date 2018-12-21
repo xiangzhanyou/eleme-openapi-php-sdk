@@ -52,8 +52,6 @@ class RpcClient
             ),
             "params" => $parameters,
         );
-        echo json_encode($protocol);
-
 
         $protocol['signature'] = $this->generate_signature($protocol);
 
