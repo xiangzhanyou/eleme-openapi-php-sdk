@@ -20,4 +20,22 @@ class MarketService extends RpcService
         return $this->client->call("eleme.market.syncMarketMessages", array("start" => $start, "end" => $end, "offset" => $offset, "limit" => $limit));
     }
 
+    /** 创建内购项目订单
+     * @param $request 创建订单请求信息
+     * @return mixed
+     */
+    public function create_order($request)
+    {
+        return $this->client->call("eleme.market.createOrder", array("request" => $request));
+    }
+
+    /** 查询服务市场订单
+     * @param $order_no 服务市场订单编号
+     * @return mixed
+     */
+    public function query_order($order_no)
+    {
+        return $this->client->call("eleme.market.queryOrder", array("orderNo" => $order_no));
+    }
+
 }
