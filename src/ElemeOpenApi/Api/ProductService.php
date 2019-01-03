@@ -736,13 +736,32 @@ class ProductService extends RpcService
         return $this->client->call("eleme.product.item.removeIngredientGroup", array("itemId" => $item_id));
     }
 
+    /** 查询连锁总店商品信息
+     * @param $iid 连锁总店商品Id
+     * @return mixed
+     */
+    public function get_chain_item($iid)
+    {
+        return $this->client->call("eleme.product.chain.item.getChainItem", array("iid" => $iid));
+    }
+
     /** 批量查询连锁总店商品信息
      * @param $iids 连锁总店商品Id列表
      * @return mixed
      */
-    public function batch_get_item($iids)
+    public function batch_get_chain_item($iids)
     {
-        return $this->client->call("eleme.product.chain.item.batchGetItem", array("iids" => $iids));
+        return $this->client->call("eleme.product.chain.item.batchGetChainItem", array("iids" => $iids));
+    }
+
+    /** 添加连锁总店商品
+     * @param $gid 连锁总店商品分组Id
+     * @param $chain_item_base_d_t_o 商品创建信息
+     * @return mixed
+     */
+    public function create_chain_item($gid, $chain_item_base_d_t_o)
+    {
+        return $this->client->call("eleme.product.chain.item.createChainItem", array("gid" => $gid, "chainItemBaseDTO" => $chain_item_base_d_t_o));
     }
 
     /** 批量添加连锁总店商品
@@ -750,9 +769,9 @@ class ProductService extends RpcService
      * @param $chain_item_base_d_t_os 商品创建信息列表
      * @return mixed
      */
-    public function batch_create_item($gid, $chain_item_base_d_t_os)
+    public function batch_create_chain_item($gid, $chain_item_base_d_t_os)
     {
-        return $this->client->call("eleme.product.chain.item.batchCreateItem", array("gid" => $gid, "chainItemBaseDTOs" => $chain_item_base_d_t_os));
+        return $this->client->call("eleme.product.chain.item.batchCreateChainItem", array("gid" => $gid, "chainItemBaseDTOs" => $chain_item_base_d_t_os));
     }
 
     /** 替换连锁总店商品
@@ -760,9 +779,9 @@ class ProductService extends RpcService
      * @param $chain_item_d_t_o 商品替换信息
      * @return mixed
      */
-    public function replace_item($gid, $chain_item_d_t_o)
+    public function replace_chain_item($gid, $chain_item_d_t_o)
     {
-        return $this->client->call("eleme.product.chain.item.replaceItem", array("gid" => $gid, "chainItemDTO" => $chain_item_d_t_o));
+        return $this->client->call("eleme.product.chain.item.replaceChainItem", array("gid" => $gid, "chainItemDTO" => $chain_item_d_t_o));
     }
 
     /** 批量替换连锁总店商品
@@ -770,9 +789,9 @@ class ProductService extends RpcService
      * @param $chain_item_d_t_os 商品替换信息列表
      * @return mixed
      */
-    public function batch_replace_item($gid, $chain_item_d_t_os)
+    public function batch_replace_chain_item($gid, $chain_item_d_t_os)
     {
-        return $this->client->call("eleme.product.chain.item.batchReplaceItem", array("gid" => $gid, "chainItemDTOs" => $chain_item_d_t_os));
+        return $this->client->call("eleme.product.chain.item.batchReplaceChainItem", array("gid" => $gid, "chainItemDTOs" => $chain_item_d_t_os));
     }
 
     /** 更新连锁总店商品不包含规格信息
@@ -780,18 +799,18 @@ class ProductService extends RpcService
      * @param $chain_item_base_d_t_o 商品更新信息
      * @return mixed
      */
-    public function update_item_without_sku($iid, $chain_item_base_d_t_o)
+    public function update_chain_item_without_sku($iid, $chain_item_base_d_t_o)
     {
-        return $this->client->call("eleme.product.chain.item.updateItemWithoutSku", array("iid" => $iid, "chainItemBaseDTO" => $chain_item_base_d_t_o));
+        return $this->client->call("eleme.product.chain.item.updateChainItemWithoutSku", array("iid" => $iid, "chainItemBaseDTO" => $chain_item_base_d_t_o));
     }
 
     /** 删除连锁总店商品
      * @param $iid 连锁总店商品Id
      * @return mixed
      */
-    public function delete_item($iid)
+    public function delete_chain_item($iid)
     {
-        return $this->client->call("eleme.product.chain.item.deleteItem", array("iid" => $iid));
+        return $this->client->call("eleme.product.chain.item.deleteChainItem", array("iid" => $iid));
     }
 
     /** 查询连锁总店商品规格

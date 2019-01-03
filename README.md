@@ -111,6 +111,13 @@
 
 
 ## CHANGELOG:
+
+### [1.44.0]
+
+    Release Date : 2019-01-03
+
+- [Feature] 更新了商品服务
+
 ### [1.43.0]
 
     Release Date : 2018-12-28
