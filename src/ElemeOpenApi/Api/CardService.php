@@ -94,4 +94,13 @@ class CardService extends RpcService
         return $this->client->call("eleme.card.getUserByToken", array("userToken" => $user_token));
     }
 
+    /** 确认是否发券接口
+     * @param $coupon_request 是否发券请求
+     * @return mixed
+     */
+    public function confirm_send_coupon($coupon_request)
+    {
+        return $this->client->call("eleme.card.confirmSendCoupon", array("couponRequest" => $coupon_request));
+    }
+
 }

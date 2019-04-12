@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [1.47.0]
+
+    Release Date : 2019-04-12
+
+- [Feature] 更新了商户会员卡服务
+
+
 ### [1.46.0]
 
     Release Date : 2019-03-05
