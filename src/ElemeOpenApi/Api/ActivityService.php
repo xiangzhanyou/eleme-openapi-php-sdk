@@ -334,6 +334,15 @@ class ActivityService extends RpcService
         return $this->client->call("eleme.activity.coupon.updateCouponStatus", array("criteria" => $criteria, "type" => $type));
     }
 
+    /** 查询订单内营销相关数据
+     * @param $order_id 饿了么订单Id
+     * @return mixed
+     */
+    public function query_order_subsidy($order_id)
+    {
+        return $this->client->call("eleme.activity.marketing.queryOrderSubsidy", array("orderId" => $order_id));
+    }
+
     /** 创建并绑定连锁店特价活动
      * @param $activity 活动创建信息
      * @param $chain_id 连锁店Id
