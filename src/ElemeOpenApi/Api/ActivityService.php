@@ -157,26 +157,6 @@ class ActivityService extends RpcService
         return $this->client->call("eleme.activity.food.unbindFoodActivity", array("activityId" => $activity_id, "shopId" => $shop_id));
     }
 
-    /** 创建红包活动(即将下线)
-     * @param $create_info 创建红包活动的结构体
-     * @return mixed
-     */
-    public function create_coupon_activity($create_info)
-    {
-        return $this->client->call("eleme.activity.coupon.createCouponActivity", array("createInfo" => $create_info));
-    }
-
-    /** 向指定用户发放红包(即将下线)
-     * @param $shop_id 店铺Id
-     * @param $coupon_activity_id 红包活动Id
-     * @param $mobiles 需要发放红包的用户手机号列表
-     * @return mixed
-     */
-    public function give_out_coupons($shop_id, $coupon_activity_id, $mobiles)
-    {
-        return $this->client->call("eleme.activity.coupon.giveOutCoupons", array("shopId" => $shop_id, "couponActivityId" => $coupon_activity_id, "mobiles" => $mobiles));
-    }
-
     /** 定向赠红包
      * @param $shop_id 店铺Id
      * @param $mobile 需要发放红包的用户手机号
@@ -186,32 +166,6 @@ class ActivityService extends RpcService
     public function present_coupon($shop_id, $mobile, $coupon_template)
     {
         return $this->client->call("eleme.activity.coupon.presentCoupon", array("shopId" => $shop_id, "mobile" => $mobile, "couponTemplate" => $coupon_template));
-    }
-
-    /** 分页查询店铺红包活动信息(即将下线)
-     * @param $shop_id 店铺Id
-     * @param $coupon_activity_type 红包活动类型
-     * @param $activity_status 活动状态
-     * @param $page_no 页码（第几页）
-     * @param $page_size 每页数量
-     * @return mixed
-     */
-    public function query_coupon_activities($shop_id, $coupon_activity_type, $activity_status, $page_no, $page_size)
-    {
-        return $this->client->call("eleme.activity.coupon.queryCouponActivities", array("shopId" => $shop_id, "couponActivityType" => $coupon_activity_type, "activityStatus" => $activity_status, "pageNo" => $page_no, "pageSize" => $page_size));
-    }
-
-    /** 分页查询店铺红包领取详情(即将下线)
-     * @param $shop_id 店铺Id
-     * @param $coupon_activity_id 红包活动Id
-     * @param $coupon_status 红包状态
-     * @param $page_no 页码（第几页）
-     * @param $page_size 每页数量
-     * @return mixed
-     */
-    public function query_received_coupon_details($shop_id, $coupon_activity_id, $coupon_status, $page_no, $page_size)
-    {
-        return $this->client->call("eleme.activity.coupon.queryReceivedCouponDetails", array("shopId" => $shop_id, "couponActivityId" => $coupon_activity_id, "couponStatus" => $coupon_status, "pageNo" => $page_no, "pageSize" => $page_size));
     }
 
     /** 托管单店红包服务
