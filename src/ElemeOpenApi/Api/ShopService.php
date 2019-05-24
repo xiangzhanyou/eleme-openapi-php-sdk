@@ -146,6 +146,15 @@ class ShopService extends RpcService
         return $this->client->call("eleme.shop.getShopVocation", array("shopId" => $shop_id));
     }
 
+    /** 查询店铺主体资质信息
+     * @param $shop_id 店铺id
+     * @return mixed
+     */
+    public function get_shop_license($shop_id)
+    {
+        return $this->client->call("eleme.shop.getShopLicense", array("shopId" => $shop_id));
+    }
+
     /** 提交开店申请接口
      * @param $open_store_message 开店申请表单
      * @return mixed
