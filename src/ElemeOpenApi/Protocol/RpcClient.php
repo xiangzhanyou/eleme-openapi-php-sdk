@@ -123,7 +123,7 @@ class RpcClient
     {
         list($usec, $sec) = explode(" ", microtime());
         $msec = (string) round($usec * 1000);
-        if (strlen($msec) < 3)
+        while (strlen($msec) < 3)
         {
             $msec = "0" . $msec;
         }
