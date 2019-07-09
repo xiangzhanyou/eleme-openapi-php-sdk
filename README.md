@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [1.52.0]
+
+    Release Date : 2019-07-09
+
+- [Feature] 更新了消息服务
+
+
 ### [1.51.0]
 
     Release Date : 2019-06-28

@@ -26,4 +26,13 @@ class MessageService extends RpcService
         return $this->client->call("eleme.message.getNonReachedOMessages", array("appId" => $app_id));
     }
 
+    /** 获取http推送失败的消息
+     * @param $request 查询推送失败消息日志结构体
+     * @return mixed
+     */
+    public function query_failed_message_log($request)
+    {
+        return $this->client->call("eleme.message.queryFailedMessageLog", array("request" => $request));
+    }
+
 }
