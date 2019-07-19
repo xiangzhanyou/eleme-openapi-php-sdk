@@ -38,4 +38,13 @@ class MarketService extends RpcService
         return $this->client->call("eleme.market.queryOrder", array("orderNo" => $order_no));
     }
 
+    /** 服务市场确认订单
+     * @param $order_no 服务市场订单编号
+     * @return mixed
+     */
+    public function confirm_order($order_no)
+    {
+        return $this->client->call("eleme.market.confirmOrder", array("orderNo" => $order_no));
+    }
+
 }

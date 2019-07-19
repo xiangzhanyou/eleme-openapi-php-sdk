@@ -112,6 +112,12 @@
 
 ## CHANGELOG:
 
+### [1.53.0]
+
+    Release Date : 2019-07-19
+
+- [Feature] 更新了服务市场服务
+
 ### [1.52.0]
 
     Release Date : 2019-07-09
