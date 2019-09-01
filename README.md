@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [1.54.0]
+
+    Release Date : 2019-09-01
+
+- [Feature] 新增了经营体检
+
+
 ### [1.53.0]
 
     Release Date : 2019-07-19
