@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [1.55.0]
+
+    Release Date : 2019-09-26
+
+- [Feature] 更新了活动服务
+
+
 ### [1.54.0]
 
     Release Date : 2019-09-01
