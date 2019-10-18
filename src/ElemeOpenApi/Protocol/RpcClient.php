@@ -122,7 +122,7 @@ class RpcClient
     private function get_millisecond() 
     {
         list($usec, $sec) = explode(" ", microtime());
-        $msec = (string) round($usec * 1000);
+        $msec = (string) floor($usec * 1000);
         while (strlen($msec) < 3)
         {
             $msec = "0" . $msec;

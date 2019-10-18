@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [1.56.0]
+
+    Release Date : 2019-10-18
+
+- [Feature] 修复requestId可能不和规范的问题
+
+
 ### [1.55.0]
 
     Release Date : 2019-09-26
