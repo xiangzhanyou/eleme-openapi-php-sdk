@@ -112,6 +112,14 @@
 
 ## CHANGELOG:
 
+### [1.57.0]
+
+    Release Date : 2019-11-18
+
+- [Feature] 更新了订单服务
+- [Feature] 新增了商户信用分服务
+
+
 ### [1.56.0]
 
     Release Date : 2019-10-18
