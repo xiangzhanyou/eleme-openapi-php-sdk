@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [1.58.0]
+
+    Release Date : 2019-12-23
+
+- [Feature] 更新了店铺服务
+
+
 ### [1.57.0]
 
     Release Date : 2019-11-18

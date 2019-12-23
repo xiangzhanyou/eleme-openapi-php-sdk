@@ -17,7 +17,7 @@ class ShopService extends RpcService
         return $this->client->call("eleme.shop.getShop", array("shopId" => $shop_id));
     }
 
-    /** 更新店铺基本信息
+    /** 更新店铺信息
      * @param $shop_id 店铺Id
      * @param $properties 店铺属性
      * @return mixed
@@ -25,6 +25,16 @@ class ShopService extends RpcService
     public function update_shop($shop_id, $properties)
     {
         return $this->client->call("eleme.shop.updateShop", array("shopId" => $shop_id, "properties" => $properties));
+    }
+
+    /** 更新店铺基本信息
+     * @param $shop_id 店铺Id
+     * @param $properties 店铺基本属性
+     * @return mixed
+     */
+    public function update_shop_basic_info($shop_id, $properties)
+    {
+        return $this->client->call("eleme.shop.updateShopBasicInfo", array("shopId" => $shop_id, "properties" => $properties));
     }
 
     /** 批量获取店铺简要
