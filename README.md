@@ -112,6 +112,13 @@
 
 ## CHANGELOG:
 
+### [1.59.0]
+
+    Release Date : 2019-12-27
+
+- [Feature] 更新了金融服务
+
+
 ### [1.58.0]
 
     Release Date : 2019-12-23
