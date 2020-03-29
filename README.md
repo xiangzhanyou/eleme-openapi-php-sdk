@@ -112,6 +112,12 @@
 
 ## CHANGELOG:
 
+### [1.60.0]
+
+    Release Date : 2020-03-30
+- [Feature] 更新了商品服务
+
+
 ### [1.59.0]
 
     Release Date : 2019-12-27
