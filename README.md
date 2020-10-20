@@ -12,7 +12,7 @@
 ### 安装
 
 ```php
-    composer require eleme-openapi/eleme-openapi-sdk
+    composer require xzy/eleme-openapi-sdk
 ```
 
 ### 基本用法
